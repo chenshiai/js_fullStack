@@ -6,6 +6,9 @@ html, body{
     width: 100%;
     height: 100%;
 }
+.active{
+    background-color: red !important;
+}
 .container{
     width: 100%;
     height: 100%;
