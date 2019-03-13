@@ -14,7 +14,21 @@
                 <h1 class="page__title">Button</h1>
                 <p class="page__desc">按钮</p>
             </div>
+            <div class="page__bd">
+                <a href="#" class="weui-btn weui-btn_primary" id="primary">页面主操作 mormal</a>
+                <a href="#" class="weui-btn weui-btn_loading">
+                    页面主操作 loading
+                    <i class="weui-loading"></i>
+                </a>
+                <a href="#" class="weui-btn weui-btn__myselfbutton">我的按钮</a>
+            </div>
         </div>
     </div>
+    <script>
+        var oPrimary = document.getElementById('primary');
+        oPrimary.onclick = function(){
+            this.innerHTML = "Hello World!";
+        }
+    </script>
 </body>
 </html>
