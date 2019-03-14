@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="money" />
+    <script>
+        //js是单线程的,事件是异步的。事件处理函数注册在？
+        //当用户点击的时候，找出那个函数并执行，将事件对象交给函数。事件监听
+    document
+        .getElementById('money')
+        .addEventListener('keydown',
+    function(event){
+        //enter确认了
+
+        //number对象有一个toFiexd()保留几位小数
+        //input的value是string类型,需要转成number型 parseFloat转为浮点型,parseInt转为整型
+        if(event.keyCode==13){
+            console.log(parseFloat(this.value).toFixed(2));
+        }
+    });
+    </script>
+</body>
+</html>
