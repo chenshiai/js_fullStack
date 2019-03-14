@@ -17,12 +17,15 @@ body{
     bottom: 0;
 }
 .view.index{
+    z-index: 10;
     background: url(http://s0.map.bdimg.com/zt/y2015/waimaibear/mobile/images/sky2_ebebaff.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 .view.proload{
+    z-index: 11;
     background-color: #ffa8a8;
+    transition: transform 0.3s;
 }
 .load-logo-c{
     width: 100%;
@@ -40,12 +43,55 @@ body{
 .ride{
     position: absolute;
     top:0;
+    animation: rideDrive 2s 0s linear forwards;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 2.40625rem;
     height: 1.890625rem;
     left: 4.75rem;
     background-image: url(http://s1.map.bdimg.com/zt/y2015/waimaibear/mobile/images/rider1_1b78925.png)
+}
+@keyframes rideDrive{
+    0%{
+        transform: translate3d(0,0,0);
+    }
+    4%{
+        transform: translate3d(0,-0.125rem,0);
+    }
+    8%{
+        transform: translate3d(0,0,0);
+    }
+    16%{
+        transform: translate3d(-.4rem,-0.125rem,0);
+    }
+    24%{
+        transform: translate3d(-.8rem,0,0);
+    }
+    32%{
+        transform: translate3d(-1.2rem,-0.125rem,0);
+    }
+    40%{
+        transform: translate3d(-1.6rem,0,0);
+    }
+    48%{transform:translate3d(-2rem,-.125rem,0rem)
+    }
+    56%{transform:translate3d(-2.4rem,0rem,0rem)
+    }
+    64%{transform:translate3d(-2.8rem,-.125rem,0rem)
+    }
+    72%{transform:translate3d(-3.2rem,0rem,0rem)
+    }
+    80%{
+      transform:translate3d(-3.6rem,-.125rem,0rem)
+    }
+    88%{
+      transform:translate3d(-4rem,0rem,0rem)
+    }
+    96%{
+      transform:translate3d(-4.4rem,-.125rem,0rem)
+    }
+    100%{
+      transform:translate3d(-4.8rem,0rem,0rem)}
 }
 .process-c{
     width: 6.25rem;
@@ -61,6 +107,9 @@ body{
     background-color: #ff2d4b;
     float: right;
     width: 1%;
-    transition: 1s;
+    /* transition: 1s; */
     border-radius: 0.2rem;
+}
+#next{
+
 }

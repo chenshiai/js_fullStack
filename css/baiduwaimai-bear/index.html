@@ -19,19 +19,24 @@
             </div>
             <div class="process-text"></div>
         </div>
+        <div id="next">下一屏</div>
     </div>
-    <div class="view">第二屏</div>
+    <div class="view index">第二屏</div>
     <div class="view"></div>
     <script>
+        const next = document.getElementById('next');
         const process = document.querySelector('.process-v');
         let width = 0;
         let interval = setInterval(()=>{
-            width += 10;
+            width += 1;
             process.style.width = width  + '%';
             if(width>=100){
                 clearInterval(interval);
+            const viewProload = document.querySelector('.view.proload');
+            viewProload.style.transform = 'translate3d(0'+',-'+100+'%,0)';
             }
-        },100);
+        },20);
+        
     </script>
 </body>
 </html>
