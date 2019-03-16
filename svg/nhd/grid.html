@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid</title>
+    <style>
+    html,body{
+        height: 100%;
+        width: 100%;
+    }
+    body{
+        margin: 0;
+        text-align: center;
+    }
+    .grid{
+        width: 750px;
+        height: 500px;
+        margin: 0 auto;
+        padding-top: 100px;
+        padding-left: 100px;
+        background-image: url('grid.png');
+        position:relative;
+    }
+    .grid::before{
+        content: "";
+        border-left: 1.5px solid #7c7cea;
+        position: absolute;
+        top: 0;
+        left: 100px;
+        width: 750px;
+        height: 600px;
+    }
+    .grid::after{
+        content: "";
+        border-top: 1.5px solid #7c7cea;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        width: 850px;
+        height: 600px;
+    }
+    svg{
+        stroke: #000000;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill:none;
+    }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <svg width='750px' height='500px' xmlns="http://www.w3c.org/2000/svg">
+            <!-- <line x1='3' y1='3' x2='48' y2='3'></line>
+            <line x1='3' y1='19' x2='65' y2='19'></line>
+            <line x1='3' y1='35' x2='48' y2='35'></line>
+            <line x1='3' y1='51' x2='65' y2='51'></line> -->
+            <!-- <polyline points="
+            3 3
+            30 28
+            3 53
+            "/> -->
+            <rect x='3' y='3' width='80' height='60'/>
+            <line x1='3' y1='19' x2='80' y2='19' style="stroke: width 6;"/>
+            <line x1='20' y1='3' x2='20' y2='17' style="stroke-width:5;"/>
+            <ellipse style="fill:none;" cx='43' cy='40' rx='20' ry='20'/>
+            <line style="stroke-width: 8;" x1='43' y1='26' x2='43' y2='46'/>
+            <ellipse style="fill:none;" cx='43' cy='42' rx='5' ry='5'/>
+        </svg>
+    </div>
+</body>
+</html>

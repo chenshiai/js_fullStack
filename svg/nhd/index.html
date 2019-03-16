@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>霓虹灯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #000000;
+        }
+
+        .text {
+            font-size: 64px;
+            stroke: #3498db;
+            /* stroke-width: 20px; */
+            fill: none;
+            stroke-width: 2;
+            font-weight: bold;
+            text-transform: uppercase;
+            /* stroke-linecap: round;
+        stroke-linejoin: round; 这里是线样式*/
+            stroke-dasharray: 90 310;
+            /* stroke-dashoffset: -4; */
+            text-shadow: 0 0 5px #3498db;
+            animation: stroke 6s infinite linear;
+        }
+
+        .text-1 {
+            stroke: red;
+            text-shadow: 0 0 5px red;
+            animation-delay: -1.5s;
+        }
+
+        .text-2 {
+            stroke: #f39c12;
+            text-shadow: 0 0 5px #f39c12;
+            animation-delay: -3s;
+        }
+
+        .text-3 {
+            stroke: #e74c33;
+            text-shadow: 0 0 5px #e74c33;
+            animation-delay: -4.5s;
+        }
+
+        .text-4 {
+            stroke: #9b59b6;
+            text-shadow: 0 0 5px #9b59b6;
+            animation-delay: -4.5s;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: -400;
+            }
+        }
+
+        .bor {
+            height: 100px;
+            border: 5px dashed red;
+            padding-top: 50px;
+            margin-top: 200px;
+            animation: bor 6s  infinite linear;
+        }
+        @keyframes bor{
+            0%{
+                border-color: #3498db
+            }
+            25%{
+                border-color: red
+            }
+            50%{
+                border-color: #f39c12
+            }
+            75%{
+                border-color: #e74c33
+            }
+            100%{
+                border-color: #9b59b6
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bor">
+        <svg width="100%" height="100%" xmlns="http://www.w3c.org/2000/svg">
+            <!-- 绘图区 
+        <line x1='3' y1='3' x2='48' y2='3'></line>
+        <rect x='30' y='30' width='80' height='60'></rect>
+        -->
+            <text text-anchor='middle' x='50%' y='50%' class="text">SegMentFault.com</text>
+            <text text-anchor='middle' x='50%' y='50%' class="text text-1">SegMentFault.com</text>
+            <text text-anchor='middle' x='50%' y='50%' class="text text-2">SegMentFault.com</text>
+            <text text-anchor='middle' x='50%' y='50%' class="text text-3">SegMentFault.com</text>
+            <text text-anchor='middle' x='50%' y='50%' class="text text-4">SegMentFault.com</text>
+        </svg>
+    </div>
+</body>
+
+</html>
