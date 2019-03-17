@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css实现技能冷却图标样式</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
         .inner {
             position: relative;
@@ -13,22 +14,33 @@
             height: 100px;
             margin: 200px auto 0 auto;
             background-color: rgb(201, 202, 202);
-            border:solid 1px;
+            border: solid 1px;
             overflow: hidden;
             border-radius: 5px;
         }
-        .spiner { 
+
+        #cdTime {
+            position: absolute;
+            width: 100%;
+            line-height: 100px;
+            z-index: 5;
+            text-align: center;
+            color: #ffffff;
+            font-size: 37px;
+        }
+
+        .spiner {
             position: absolute;
             z-index: 1;
             top: -50px;
             left: -50px;
             width: 100px;
             height: 200px;
-            transform-origin: right ;
-            animation: spin 10s infinite linear;
-            border-radius:  100px 0 0 100px;
+            transform-origin: right;
+            border-radius: 100px 0 0 100px;
             background-color: rgb(201, 202, 202);
         }
+
         .filler {
             position: absolute;
             left: 50px;
@@ -37,10 +49,11 @@
             height: 200px;
             border-radius: 0px 100px 100px 0;
             background-color: rgb(121, 121, 121);
-            animation: second-half-hide 10s  steps(1, end) infinite;
+            opacity: 0;
         }
-
+        
         .masker {
+            z-index: 0;
             position: absolute;
             left: -50px;
             top: -50px;
@@ -48,9 +61,20 @@
             height: 200px;
             border-radius: 100px 0px 0 100px;
             background-color: rgb(121, 121, 121);
-            animation: second-half-show 10s  steps(1, end) infinite;
         }
+        .ani1{
+            animation: spin  linear;
+            animation-duration:10s;
 
+        }
+        .ani2{
+            animation: second-half-hide  steps(1, end);
+            animation-duration:10s;
+        }
+        .ani3{
+            animation: second-half-show  steps(1, end);
+            animation-duration:10s;
+        }
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -86,12 +110,55 @@
 </head>
 
 <body>
+    <input type="text" value="" id="cdval">
+    <p>输入整数时间，然后按Enter即可。非数字会出错</p>
     <div class="inner">
+        <div id="cdTime"></div>
         <div class="spiner"></div>
         <div class="filler"></div>
         <div class="masker"></div>
     </div>
-
+    <script>
+        let CD;
+        var cdTime = document.getElementById('cdTime');
+        function cdTimeDown(CD) {
+            if(CD>1) cdTime.innerHTML = CD--;
+            const cdT = setInterval(function () {
+                if (1 >= CD) {
+                    cdTime.innerHTML = CD;
+                    let cdFloat = CD;
+                    const timeFloat = setInterval(function () {
+                        cdTime.innerHTML = cdFloat.toFixed(1);
+                        cdFloat -= 0.1;
+                        if (cdFloat <= 0) {
+                            clearInterval(timeFloat);
+                            clearInterval(cdT);
+                            $('.spiner').removeClass('ani1');
+                            $('.filler').removeClass('ani2');
+                            $('.masker').removeClass('ani3');
+                        }
+                    }, 90)
+                } else {
+                    cdTime.innerHTML = CD--;
+                }
+            }, 1000)
+        }
+        
+        document
+            .getElementById('cdval')
+            .addEventListener('keydown', function (event) {
+                if (event.keyCode == 13) {
+                    CD = this.value;
+                    cdTimeDown(CD); 
+                    $('.spiner').addClass('ani1');
+                    $('.filler').addClass('ani2');
+                    $('.masker').addClass('ani3');
+                    $('.ani1')[0].style.animationDuration = CD+'s';
+                    $('.ani2')[0].style.animationDuration = CD+'s';   
+                    $('.ani3')[0].style.animationDuration = CD+'s';     
+                }
+            })
+    </script>
 </body>
 
 </html>
