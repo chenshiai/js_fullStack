@@ -1,205 +1,581 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-}
-
-/* bgm按钮 */
-
-.music-btn {
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    top: 25px;
-    left: 25px;
-    z-index: 3;
-    background: url(https://kfc.normcore.com/bft_burger/static/images/icon-play.png) no-repeat center / cover;
-}
-
-.music-btn.off {
-    background-image: url(https://kfc.normcore.com/bft_burger/static/images/icon-mute.png);
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
+/* music 按钮 */
+
+.music-btn {
+  position: fixed;
+  z-index: 9999;
+  top: 25px;
+  left: 25px;
+  width: 40px;
+  height: 40px;
+  background: url(https://kfc.normcore.com/bft_burger/static/images/icon-play.png) no-repeat center / cover;
+}
+
+.music-btn.off {
+  background-image: url(https://kfc.normcore.com/bft_burger/static/images/icon-mute.png);
+}
+
+/* view 2 */
+
 .view {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .view.special {
-    position: absolute;
-    background-image: linear-gradient(60deg, #f8ddd1, #faece5 73%, #fad2c0)
+  position: absolute;
+  background-image: linear-gradient( 60deg, #f8ddd1, #faece5 73%, #fad2c0)
 }
 
-/* 秋千 */
-
 .art {
-    width: 750px;
-    height: 1334px;
-    right: 0;
-    position: absolute;
-    transform: scale(0.5);
-    transform-origin: top right;
-    top: -140px;
+  position: absolute;
+  width: 750px;
+  height: 1334px;
+  right: 0;
+  top: -140px;
+  transform: scale(.5);
+  transform-origin: top right;
 }
 
 .swing {
-    position: absolute;
-    left: 226px;
-    top: -180.25px;
-    width: 478px;
-    height: 1038px;
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/swing.88545d6c8e1ac798465e367f8e5357ab.png) no-repeat;
-    animation: ani_swing 6s ease-in-out infinite;
-    transform-origin: -16% -29%;
+  position: absolute;
+  left: 226px;
+  top: -180px;
+  width: 478px;
+  height: 1038px;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/swing.88545d6c8e1ac798465e367f8e5357ab.png) no-repeat;
+  transform-origin: -16% -29%;
+  animation: ani_qiuqian 6s ease-in-out infinite;
 }
 
-@keyframes ani_swing {
-    0% {
-        transform: rotateZ(0);
-    }
-    50% {
-        transform: rotateZ(31deg);
-    }
-    100% {
-        transform: rotateZ(0);
-    }
+@keyframes ani_qiuqian {
+  0% {
+    transform: rotateZ(0);
+  }
+  50% {
+    transform: rotateZ(30deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
 }
+
+/* 腿 */
 
 .swing .leg2 {
-    position: absolute;
-    display: block;
-    left: 185.375px;
-    top: 958px;
-    width: 130px;
-    height: 32px;
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2.d7bc44a91b6974450f2ccc430846c63d.png) no-repeat;
-    transform-origin:91% 33%;
-    animation: ani5_leg2 6s ease infinite;
+  position: absolute;
+  left: 185px;
+  top: 958px;
+  width: 130px;
+  height: 32px;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2.d7bc44a91b6974450f2ccc430846c63d.png) no-repeat;
+  animation: ani_leg2 8s ease-in-out infinite;
+  transform-origin: 91% 33%;
 }
-@keyframes ani5_leg2{
-    0%{
-        transform: rotateZ(0);
-    }
-    25%{
-        transform: rotateZ(-86deg);
-    }
-    50%{
-        transform: rotateZ(0);
-    }
-    75%{
-        transform: rotateZ(-86deg);
-    }
-    100%{
-        transform: rotateZ(0);
-    }
+
+@keyframes ani_leg2 {
+  0% {
+    transform: rotateZ(0);
+  }
+  25% {
+    transform: rotateZ(-86deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(-86deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
 }
+
 .swing .leg2 .jiojio {
-    display: block;
-    position: absolute;
-    width: 57px;
-    height: 44px;
-    left: -27.75px;
-    top: -10.5px;
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2-part.8f70bb7fc789a70bc78c48aa7718a765.png);
+  position: absolute;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2-part.8f70bb7fc789a70bc78c48aa7718a765.png) no-repeat;
+  left: -27.75px;
+  top: -10.5px;
+  width: 57px;
+  height: 44px;
 }
+
+/* leg 1 */
 
 .swing .leg1 {
-    display: block;
-    position: absolute;
-    left: 290.375px;
-    top: 955.25px;
-    width: 63px;
-    height: 130px;
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1.b1df6a7d1a794d36fbd0e1277733e1cf.png) no-repeat;
-    transform-origin: 17.8571428571429% 13.3653846153846%;
-    animation: ani5_leg1 6s ease infinite;
+  position: absolute;
+  width: 63px;
+  height: 130px;
+  left: 290px;
+  top: 955px;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1.b1df6a7d1a794d36fbd0e1277733e1cf.png) no-repeat;
+  transform-origin: 17% 13%;
+  animation: ani_leg1 8s ease infinite;
 }
 
-@keyframes ani5_leg1{
-    0%{
-        transform: rotateZ(0);
-    }
-    25%{
-        transform: rotateZ(108deg);
-    }
-    50%{
-        transform: rotateZ(0);
-    }
-    75%{
-        transform: rotateZ(108deg);
-    }
-    100%{
-        transform: rotateZ(0);
-    }
+@keyframes ani_leg1 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(108deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(108deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
 
-.swing .leg1 .jiojio {
-    display: block;
-    position: absolute;
-    left: 26.25px;
-    top: 102.5px;
-    width: 39px;
-    height: 62px;
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1-part.f2f17703a6af8fd2af5e0f5a9f320623.png) no-repeat;
+.leg1 .jiojio {
+  position: absolute;
+  left: 26.25px;
+  top: 102.5px;
+  width: 39px;
+  height: 62px;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1-part.f2f17703a6af8fd2af5e0f5a9f320623.png) no-repeat;
 }
 
 /* 头 */
 
 .swing .neck, .swing .head {
-    display: block;
-    position: absolute;
-    left: 451.125px;
-    top: 855.5px;
-    width: 51px;
-    height: 42px;
+  display: block;
+  position: absolute;
+  left: 451.125px;
+  top: 855.5px;
+  width: 51px;
+  height: 42px;
 }
 
 /* 脖子 */
 
 .swing .neck {
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/neck.07a0013beff9796ed79c2cea542e5af2.png) no-repeat;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/neck.07a0013beff9796ed79c2cea542e5af2.png) no-repeat;
 }
 
 /* 头 */
 
 .swing .head {
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head.90bf892023d7df0522a4b53fc07e38df.png) no-repeat;
-    animation: ani2_head 6s ease infinite;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head.90bf892023d7df0522a4b53fc07e38df.png) no-repeat;
+  animation: ani2_head 8s ease infinite;
 }
-@keyframes ani2_head{
-    0%{
-        transform: rotateZ(-55deg);
-    }
-    25%{
-        transform: rotateZ(-55deg);
-    }
-    50%{
-        transform: rotateZ(0);
-    }
-    86%{
-        transform: rotateZ(-55deg);
-    }
-    100%{
-        transform: rotateZ(-55deg);
-    }
+
+@keyframes ani2_head {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotateZ(-55deg);
+  }
+  62.5% {
+    transform: rotateZ(-55deg);
+  }
+  87% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
+
 /* 头发 */
 
 .swing .head .part {
-    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head-part.22d4381c4bd6cb1c3afd2b1bfcfe22f1.png) no-repeat;
-    left: 20px;
-    top: 2px;
-    width: 40px;
-    height: 47px;
-    position: absolute;
+  background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head-part.22d4381c4bd6cb1c3afd2b1bfcfe22f1.png) no-repeat;
+  left: 20px;
+  top: 2px;
+  width: 40px;
+  height: 47px;
+  position: absolute;
+}
+
+/* 文字 */
+
+.paras {
+  position: absolute;
+  bottom: 110px;
+  left: 10.67%;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.s-fcRed {
+  color: #df493a;
+}
+
+.z-enter .f-animLineUp {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1.2s, transform 1s;
+}
+
+.f-animLineUp {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+em, i {
+  text-align: left;
+}
+
+.id18_juian {
+  background: url(http://s5.music.126.net/static_public/5c21db8d4684556c72180904/juan3.1c58874dbcd7f233bf027e9332ea6d96.png) no-repeat;
+  right: 0;
+  top: 0;
+  width: 483px;
+  height: 159px;
+  display: block;
+  position: absolute;
+  -webkit-transform: scale(.5);
+  transform: scale(.5);
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+  visibility: hidden;
+}
+
+.z-juanAni2 {
+  visibility: visible;
+  animation: juanAnimation .5s steps(1, end) reverse, juanAnimation2 1s steps(1, end) 1s forwards;
+}
+
+@keyframes juanAnimation {
+  0% {
+    background-position: 0 0
+  }
+  3.70% {
+    background-position: -483px 0
+  }
+  7.41% {
+    background-position: -966px 0
+  }
+  11.11% {
+    background-position: -1449px 0
+  }
+  14.81% {
+    background-position: 0 -159px
+  }
+  18.52% {
+    background-position: -483px -159px
+  }
+  22.22% {
+    background-position: -966px -159px
+  }
+  25.93% {
+    background-position: -1449px -159px
+  }
+  29.63% {
+    background-position: 0 -318px
+  }
+  33.33% {
+    background-position: -483px -318px
+  }
+  37.04% {
+    background-position: -966px -318px
+  }
+  40.74% {
+    background-position: -1449px -318px
+  }
+  44.44% {
+    background-position: 0 -477px
+  }
+  48.15% {
+    background-position: -483px -477px
+  }
+  51.85% {
+    background-position: -966px -477px
+  }
+  55.56% {
+    background-position: -1449px -477px
+  }
+  59.26% {
+    background-position: 0 -636px
+  }
+  62.96% {
+    background-position: -483px -636px
+  }
+  66.67% {
+    background-position: -966px -636px
+  }
+  70.37% {
+    background-position: -1449px -636px
+  }
+  74.07% {
+    background-position: 0 -795px
+  }
+  77.78% {
+    background-position: -483px -795px
+  }
+  81.48% {
+    background-position: -966px -795px
+  }
+  85.19% {
+    background-position: -1449px -795px
+  }
+  88.89% {
+    background-position: 0 -954px
+  }
+  92.59% {
+    background-position: -483px -954px
+  }
+  96.30% {
+    background-position: -966px -954px
+  }
+  100.00% {
+    background-position: -1449px -954px
+  }
+}
+
+@keyframes juanAnimation2 {
+  0% {
+    background-position: 0 0
+  }
+  3.70% {
+    background-position: -483px 0
+  }
+  7.41% {
+    background-position: -966px 0
+  }
+  11.11% {
+    background-position: -1449px 0
+  }
+  14.81% {
+    background-position: 0 -159px
+  }
+  18.52% {
+    background-position: -483px -159px
+  }
+  22.22% {
+    background-position: -966px -159px
+  }
+  25.93% {
+    background-position: -1449px -159px
+  }
+  29.63% {
+    background-position: 0 -318px
+  }
+  33.33% {
+    background-position: -483px -318px
+  }
+  37.04% {
+    background-position: -966px -318px
+  }
+  40.74% {
+    background-position: -1449px -318px
+  }
+  44.44% {
+    background-position: 0 -477px
+  }
+  48.15% {
+    background-position: -483px -477px
+  }
+  51.85% {
+    background-position: -966px -477px
+  }
+  55.56% {
+    background-position: -1449px -477px
+  }
+  59.26% {
+    background-position: 0 -636px
+  }
+  62.96% {
+    background-position: -483px -636px
+  }
+  66.67% {
+    background-position: -966px -636px
+  }
+  70.37% {
+    background-position: -1449px -636px
+  }
+  74.07% {
+    background-position: 0 -795px
+  }
+  77.78% {
+    background-position: -483px -795px
+  }
+  81.48% {
+    background-position: -966px -795px
+  }
+  85.19% {
+    background-position: -1449px -795px
+  }
+  88.89% {
+    background-position: 0 -954px
+  }
+  92.59% {
+    background-position: -483px -954px
+  }
+  96.30% {
+    background-position: -966px -954px
+  }
+  100.00% {
+    background-position: -1449px -954px
+  }
+}
+
+.art1 {
+  position: absolute;
+  left: 0;
+  width: 750px;
+  bottom: 0;
+  height: 1334px;
+  -webkit-transform: scale(.5);
+  transform: scale(.5);
+  -webkit-transform-origin: bottom left;
+  transform-origin: bottom left;
+  background: linear-gradient(to bottom right,#ffffff 10%,#ffddcd 90%, #ffba9b);
+}
+.lines {
+  position: absolute;
+  left: 0;
+  width: 750px;
+  bottom: 80px;
+  height: 154px;
+  background: url(http://s5.music.126.net/static_public/5c21db8d4684556c72180904/lines.efe391dd03cf355b347bc58c25f512e8.png) no-repeat;
+  background-size: 100%;
+}
+.manwrap {
+  position: absolute;
+  width: 486px;
+  height: 494px;
+  bottom: 0;
+  right: 0;
+}
+
+.man {
+  position: absolute;
+  width: 486px;
+  height: 494px;
+  top: 0;
+  left: 0;
+  background: url(http://s5.music.126.net/static_public/5c21db8d4684556c72180904/man.fafe9d20caf92e672faf6cac0506c94b.png) no-repeat;
+}
+
+.shoubi {
+  position: absolute;
+  left: 70px;
+  top: -115px;
+  background-image: url(http://s5.music.126.net/static_public/5c21db8d4684556c72180904/shoubi.dfdeb7747a98b98266ff5b0713024c87.png);
+  width: 246px;
+  height: 270px;
+  -webkit-animation: p14-shoubi 1.3s steps(1) infinite;
+  animation: p14-shoubi 1.3s steps(1) infinite;
+}
+
+.tou {
+  position: absolute;
+  left: 220px;
+  top: -5px;
+  width: 94px;
+  height: 101px;
+  background: url(http://s5.music.126.net/static_public/5c21db8d4684556c72180904/tou.763e9f0545a28bfbc642f5d8db77c9d5.png) no-repeat;
+  -webkit-animation: p14-tou 1.3s steps(1) infinite;
+  animation: p14-tou 1.3s steps(1) infinite;
+}
+.notes {
+  position: relative;
+  width: 750px;
+  height: 1334px;
+  background: url(//s5.music.126.net/static_public/5c21db8d4684556c72180904/notes.eca9b7c6e40734a059f7b7c7f02477ec.svg) no-repeat;
+}
+@keyframes p14-tou {
+  0% {
+    background-position: 0 0;
+  }
+  8.33% {
+    background-position: -94px 0;
+  }
+  16.67% {
+    background-position: -188px 0;
+  }
+  25% {
+    background-position: -282px 0;
+  }
+  33.33% {
+    background-position: -376px 0;
+  }
+  41.67% {
+    background-position: -470px 0;
+  }
+  50% {
+    background-position: -564px 0;
+  }
+  58.33% {
+    background-position: -658px 0;
+  }
+  66.67% {
+    background-position: -752px 0;
+  }
+  75% {
+    background-position: -846px 0;
+  }
+  83.33% {
+    background-position: -940px 0;
+  }
+  91.67% {
+    background-position: -1034px 0;
+  }
+  100% {
+    background-position: -1128px 0;
+  }
+}
+
+@keyframes p14-shoubi {
+  0% {
+    background-position: 0 0;
+  }
+  8.33% {
+    background-position: -246px 0;
+  }
+  16.67% {
+    background-position: -492px 0;
+  }
+  25% {
+    background-position: -738px 0;
+  }
+  33.33% {
+    background-position: -984px 0;
+  }
+  41.67% {
+    background-position: -1230px 0;
+  }
+  50% {
+    background-position: -1476px 0;
+  }
+  58.33% {
+    background-position: -1722px 0;
+  }
+  66.67% {
+    background-position: -1968px 0;
+  }
+  75% {
+    background-position: -2214px 0;
+  }
+  83.33% {
+    background-position: -2460px 0;
+  }
+  91.67% {
+    background-position: -2706px 0;
+  }
+  100% {
+    background-position: -2952px 0;
+  }
 }
