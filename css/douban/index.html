@@ -9,7 +9,7 @@
     <style>
         * {
             /* 去掉所有元素上浏览器默认的点击样式 */
-            -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             margin: 0;
             padding: 0;
         }
@@ -34,11 +34,29 @@
             color: #494949;
             margin-left: 18px;
         }
-
+        .feed-item:before{
+            content: "";
+            position:absolute;
+            left: 0;
+            top: 0;
+            height: 1px;
+            transform: scaleY(0.5);
+            transform-origin: 0 bottom;
+            background-color: #e3e3e3;
+            width: 100%;
+        }
         .feed-content {
             margin-bottom: 10px;
         }
-
+        .feed-content .photos{
+            display: flex;
+        }
+        .feed-content .photos .main{
+            flex: 3.2;
+        }
+        .feed-content .photos .aside{
+            flex: 1;
+        }
         .feed-content h3 {
             font-size: 17px;
             font-weight: bold;
@@ -99,6 +117,33 @@
         <div class="author">
             by&nbsp;<sapn class="name">妖精</sapn>
         </div>
+    </a>
+    <a href="#" class="feed-item">
+        <div class="feed-content">
+            <div class="photos">
+                <div class="main" style="position:relative;background:url(https://img3.doubanio.com/view/photo/l/public/p2549554495.jpg) center center / cover no-repeat rgb(250,250,250);"></div>
+                <div class="aside">
+                    <div class="aside-pic">
+                        <div style="position:relative;background:url(https://img1.doubanio.com/view/photo/l/public/p2549554638.jpg) center center / cover no-repeat rgb(250,250,250);;">
+                            <div style="padding-top: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="aside-pic">
+                        <div style="position:relative;background:url(https://img1.doubanio.com/view/photo/l/public/p2549554638.jpg) center center / cover no-repeat rgb(250,250,250);;">
+                            <div style="padding-top: 100%;"></div>
+                        </div>
+                        <div class="more-pic">
+                            <span class="count">141+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>Joseph Catimbang
+            </h3>
+            <p>https://www.pentasticarts.com 一位菲律宾裔美国插画家和概念艺术家。他的画作里往往只有黑白两色，凭
+            </p>
+        </div>
+        <div class="author"></div>
     </a>
 </body>
 
