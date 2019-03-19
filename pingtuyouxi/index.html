@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <div class="fallImg">
+    </div>
     <div class="all-image">
         <div class="scroll0 image-item">
             <div class="item0 img"></div>
@@ -48,28 +50,46 @@
     var empty1 = 2;
     var empty2 = 2;
     var arr = [
-        [0,1,2],
-        [3,4,5],
-        [6,7,""]
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8]
     ]
-    function change(num){
-        let i = Math.floor(num/3);
-        let j = num-i*3;
-        let x = arr[i][j];
-        arr[i][j] = arr[empty1][empty2];
-        arr[empty1][empty2] = x;
-        empty1 = i;
-        empty2 = j;
-        console.log(arr);
+    function panduan(i, j) {
+        if (i == empty1) {
+            if (Math.abs(j - empty2) == 1) {
+                return true;
+            }
+        } else if (Math.abs(i - empty1) <= 1) {
+            if (j == empty2) {
+                return true;
+            }
+        }
+        return false;
+    }
+    function change(num) {
+        let i = Math.floor(num / 3);
+        let j = num - i * 3;
+        if (panduan(i, j)) {
+            let x = arr[i][j];
+            arr[i][j] = arr[empty1][empty2];
+            arr[empty1][empty2] = x;
+            empty1 = i;
+            empty2 = j;
+            return true;
+        } else {
+            return false;
+        }
+
     }
     $(document).ready(function () {
         $('.image-item').click(function () {
             let now = $(this).index();
-            change(now);
-            var imgclass = $(this).children().attr('class');
-            var item33 = $('.item8').attr('class');
-            $('.item8').attr('class', imgclass);
-            $(this).children().attr('class', item33);
+            if (change(now)) {
+                var imgclass = $(this).children().attr('class');
+                var item33 = $('.item8').attr('class');
+                $('.item8').attr('class', imgclass);
+                $(this).children().attr('class', item33);
+            }
         })
     })
     /*

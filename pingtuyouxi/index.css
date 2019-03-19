@@ -5,29 +5,40 @@
 body{
     background-color: #dadada;
 }
+.fallImg{
+    position: absolute;
+    right: 0;
+    width: 476px;
+    height: 296px;
+    background-image: url(./timg.jpg);
+    background-size: 100%;
+}
+
 .all-image{
     width: 714px;
     height: 444px;
     background-size: 100% 100%;
-    margin: 100px auto 0 auto;
+    margin: 100px 0 0 100px;
     position: relative;
     box-shadow: 0 0  15px #999999;
 }
 .image-item{
-    float: left;
-    /* transition: all 0.5s ease; */
+    /* float: left; */
+    transform: scale(0.99);
+    position: absolute;
 }
 .img{
     width: 238px;
     height: 148px;
     background-image: url(./timg.jpg);
     background-size: 300% 300%;
-    /* transition: all 0.2s ease; */
+    
 }
 .img:hover{
     z-index: 2;
-    transform: scale(1.1);
-    box-shadow: 0 0  15px #14ffe0; 
+    /* transform: scale(1); */
+    box-shadow: 0 0  20px #ffae00 inset; 
+    border: solid 1px #ffae00;
 }
 .item0{
     background-position: 0 0 ;
@@ -64,7 +75,7 @@ body{
     transform: scale(1);
     box-shadow: #999999 0 0 50px inset;
 }
-/* .scroll0{
+.scroll0{
     left: 0;
     top: 0;
 }
@@ -99,4 +110,4 @@ body{
 .scroll8{
     left: 476px;
     top: 296px;
-} */
+}
