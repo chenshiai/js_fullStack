@@ -7,20 +7,22 @@ body{
 }
 .fallImg{
     position: absolute;
-    right: 0;
+    right: 50px;
     width: 476px;
     height: 296px;
     background-image: url(./timg.jpg);
     background-size: 100%;
+    border: solid 5px #e2b900;
+    box-shadow: 10px 8px  15px #999999;
 }
 
 .all-image{
     width: 714px;
     height: 444px;
     background-size: 100% 100%;
-    margin: 100px 0 0 100px;
+    margin: 100px 0 0 50px;
     position: relative;
-    box-shadow: 0 0  15px #999999;
+    box-shadow: 0 0  15px #999999,0 0  15px #999999,0 0  15px #999999,0 0  15px #999999;
 }
 .image-item{
     /* float: left; */
@@ -36,9 +38,7 @@ body{
 }
 .img:hover{
     z-index: 2;
-    /* transform: scale(1); */
-    box-shadow: 0 0  20px #ffae00 inset; 
-    border: solid 1px #ffae00;
+    box-shadow: 0 0  20px #ff0000 inset;
 }
 .item0{
     background-position: 0 0 ;
