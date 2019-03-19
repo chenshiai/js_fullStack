@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.swiper-slide{
+    width: 300px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid red;
+    height: 178px;
+    padding: 12px 16px;
+}
