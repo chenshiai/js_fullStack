@@ -17,15 +17,23 @@ body{
 }
 
 .all-image{
+    filter: brightness(1);
     width: 714px;
     height: 444px;
-    background-size: 100% 100%;
     margin: 100px 0 0 50px;
     position: relative;
     box-shadow: 0 0  15px #999999,0 0  15px #999999,0 0  15px #999999,0 0  15px #999999;
 }
+.blink{
+    animation: bin 2s linear;
+}
+@keyframes bin{
+    0%{filter: brightness(0.7)}
+    30%{filter: brightness(4)}
+    80%{filter: brightness(1.4)}
+    100%{filter: brightness(1)}
+}
 .image-item{
-    /* float: left; */
     transform: scale(0.99);
     position: absolute;
 }
@@ -34,7 +42,6 @@ body{
     height: 148px;
     background-image: url(./timg.jpg);
     background-size: 300% 300%;
-    
 }
 .img:hover{
     z-index: 2;
@@ -66,13 +73,11 @@ body{
     background-position: -238px -296px ;
 }
 .item8{
-    z-index: -1;
-    background-image: none;
-    box-shadow: #999999 0 0 50px inset;
     background-position: -476px -296px ;
 }
-.item8:hover{
-    transform: scale(1);
+.empty{
+    z-index: -1;
+    background-image: none;
     box-shadow: #999999 0 0 50px inset;
 }
 .scroll0{

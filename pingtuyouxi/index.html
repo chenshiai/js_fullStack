@@ -41,7 +41,7 @@
             <div class="item7 img"></div>
         </div>
         <div class="scroll8 image-item">
-            <div class="item8 img"></div>
+            <div class="empty img"></div>
         </div>
 
     </div>
@@ -93,15 +93,22 @@
                 }
             }
         }
-        setTimeout(()=>{alert("YOU WIN!")},500);
+        setTimeout(()=>{
+            alert("YOU WIN!");
+            $('.all-image').addClass('blink');
+            $('.image-item').css('transform','scale(1)');
+            $('.empty').addClass('item8').removeClass('empty');
+        },100);
+        $('.all-image').removeClass('blink');
+        
     }
     $(document).ready(function () {
         $('.image-item').click(function () {
             let now = $(this).index();
             if (change(now)) {
                 var imgclass = $(this).children().attr('class');
-                var item33 = $('.item8').attr('class');
-                $('.item8').attr('class', imgclass);
+                var item33 = $('.empty').attr('class');
+                $('.empty').attr('class', imgclass);
                 $(this).children().attr('class', item33);
                 winbol();
             }
