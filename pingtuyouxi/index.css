@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #dadada;
+}
+.all-image{
+    width: 714px;
+    height: 444px;
+    background-size: 100% 100%;
+    margin: 100px auto 0 auto;
+    position: relative;
+    box-shadow: 0 0  15px #999999;
+}
+.all-image div{
+    position: absolute;
+}
+.image-item{
+    transition: all 0.5s ease;
+}
+.img{
+    width: 238px;
+    height: 148px;
+    background-image: url(./timg.jpg);
+    background-size: 300% 300%;
+    transition: all 0.5s ease;
+}
+.img:hover{
+    z-index: 2;
+    transform: scale(1.1);
+    box-shadow: 0 0  15px #14ffe0; 
+}
+.item11{
+    background-position: 0 0 ;
+}
+.item12{
+    background-position: -238px 0 ;
+}
+.item13{
+    
+    background-position: -476px 0 ;
+}
+.item21{
+    background-position: 0 -148px ;
+}
+.item22{
+    background-position: -238px -148px ;
+}
+.item23{
+    background-position: -476px -148px ;
+}
+.item31{
+    background-position: 0px -296px ;
+}
+.item32{
+    background-position: -238px -296px ;
+}
+.item33{
+    z-index: -1;
+    background-image: none;
+    box-shadow: #999999 0 0 50px inset;
+    background-position: -476px -296px ;
+}
+.item33:hover{
+    transform: scale(1);
+    box-shadow: #999999 0 0 50px inset;
+}
+.scroll11{
+    left: 0;
+    top: 0;
+}
+.scroll12{
+    left: 238px;
+    top: 0;
+}
+.scroll13{
+    left: 476px;
+    top: 0;
+}
+.scroll21{
+    left: 0;
+    top: 148px;
+}
+.scroll22{
+    left: 238px;
+    top: 148px;
+}
+.scroll23{
+    left: 476px;
+    top: 148px;
+}
+.scroll31{
+    left: 0;
+    top: 296px;
+}
+.scroll32{
+    left: 238px;
+    top: 296px;
+}
+.scroll33{
+    left: 476px;
+    top: 296px;
+}
