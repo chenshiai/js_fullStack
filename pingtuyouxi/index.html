@@ -102,6 +102,24 @@
         $('.all-image').removeClass('blink');
         
     }
+    function automove(allnum){
+        for(let i=0 ;i<100;i++){
+            let ind = Math.floor(Math.random()*allnum);
+            change(ind);
+        }
+        for(let i=0 ;i<3;i++){
+            for(let j=0;j<3;j++){
+                let autoIndex = arr[i][j];
+                let num = i*3+j;
+                if(autoIndex!=8){
+                    $('.image-item').eq(num).children().attr('class','img item'+autoIndex);
+                }else{
+                    $('.image-item').eq(num).children().attr('class','img empty');
+                }
+            }
+        }
+    }
+    automove(9);
     $(document).ready(function () {
         $('.image-item').click(function () {
             let now = $(this).index();
