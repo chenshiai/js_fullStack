@@ -103,10 +103,15 @@
         
     }
     function automove(allnum){
-        for(let i=0 ;i<100;i++){
+        let count = 0;
+        for(let i=0 ;i<50;count++){
             let ind = Math.floor(Math.random()*allnum);
-            change(ind);
+            if(change(ind)){
+                i++;
+                console.log(ind);
+            }
         }
+        console.log(count);
         for(let i=0 ;i<3;i++){
             for(let j=0;j<3;j++){
                 let autoIndex = arr[i][j];
