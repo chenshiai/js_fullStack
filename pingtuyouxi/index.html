@@ -14,142 +14,92 @@
     <div class="fallImg">
     </div>
     <div class="all-image">
-        <div class="scroll0 image-item">
+        <div class=" image-item">
             <div class="item0 img"></div>
         </div>
-        <div class="scroll1 image-item">
+        <div class=" image-item">
             <div class="item1 img"></div>
         </div>
-        <div class="scroll2 image-item">
+        <div class=" image-item">
             <div class="item2 img"></div>
         </div>
 
-        <div class="scroll3 image-item">
+        <div class=" image-item">
             <div class="item3 img"></div>
         </div>
-        <div class="scroll4 image-item">
+        <div class=" image-item">
             <div class="item4 img"></div>
         </div>
-        <div class="scroll5 image-item">
+        <div class=" image-item">
             <div class="item5 img"></div>
         </div>
 
-        <div class="scroll6 image-item">
+        <div class=" image-item">
             <div class="item6 img"></div>
         </div>
-        <div class="scroll7 image-item">
+        <div class=" image-item">
             <div class="item7 img"></div>
         </div>
-        <div class="scroll8 image-item">
+        <div class=" image-item">
             <div class="empty img"></div>
         </div>
-
     </div>
+    <div class="choose">
+        <div class="choose-btn replay">
+            <svg width='60' height='60' xmlns="http://www.w3c.org/2000/svg">
+                <defs>
+                    <symbol viewBox="0 0 64 64" id="replay" class='svg-replay'>
+                        <ellipse cx='32' cy='32' rx='30' ry='30'></ellipse>
+                    </symbol>
+                    <text text-anchor='middle' width='64' height='64' class="text" id='text-R'>Replay</text>
+                </defs>
+                <use href="#replay" x='0' y='0' width='60' height='60'></use>
+                <use href="#text-R" x='30' y='33'></use>
+            </svg>
+        </div>
+        <div class="choose-btn cimg">
+            <svg width='60' height='60' xmlns="http://www.w3c.org/2000/svg">
+                <defs>
+                    <symbol viewBox="0 0 64 64" id="cimg" class="svg-cimg">
+                        <ellipse cx='32' cy='32' rx='30' ry='30'></ellipse>
+                    </symbol>
+                    <symbol viewBox="0 0 64 64" id="cimg__logo" class="svg-cimg__logo">
+                        <path d="
+                        M 3 3
+                        L 43 3
+                        L 43 28
+                        L 3 28
+                        Z
+                        "></path>
+                        <polyline points="
+                        3 20
+                        10 8
+                        22 20
+                        "></polyline>
+                        <polyline points="
+                        20 23
+                        30 5
+                        43 20
+                        "></polyline>
+                    </symbol>
+
+                </defs>
+                <use href="#cimg" x='0' y='0' width='60' height='60'></use>
+                <use href="#cimg__logo" x='9' y='15' width='60' height='60'></use>
+            </svg>
+        </div>
+        <div class="choose-btn">选择难度
+            <div class="choose-dif">简单</div>
+            <div class="choose-dif">中等</div>
+            <div class="choose-dif">困难</div>
+        </div>
+    </div>
+    <div class="changeImage">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+    <script src="./index.js"></script>
 </body>
-<script>
-    var empty1 = 2;
-    var empty2 = 2;
-    var arr = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8]
-    ];
-    const win = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8]
-    ]
-    function panduan(i, j) {
-        if (i == empty1) {
-            if (Math.abs(j - empty2) == 1) {
-                return true;
-            }
-        } else if (Math.abs(i - empty1) <= 1) {
-            if (j == empty2) {
-                return true;
-            }
-        }
-        return false;
-    }
-    function change(num) {
-        let i = Math.floor(num / 3);
-        let j = num - i * 3;
-        if (panduan(i, j)) {
-            let x = arr[i][j];
-            arr[i][j] = arr[empty1][empty2];
-            arr[empty1][empty2] = x;
-            empty1 = i;
-            empty2 = j;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    function winbol(){
-        for(let i=0;i<3;i++){
-            for(let j=0;j<3;j++){
-                if(arr[i][j]!=win[i][j]){
-                    return false;
-                }
-            }
-        }
-        setTimeout(()=>{
-            alert("YOU WIN!");
-            $('.all-image').addClass('blink');
-            $('.image-item').css('transform','scale(1)');
-            $('.empty').addClass('item8').removeClass('empty');
-        },100);
-        $('.all-image').removeClass('blink');
-        
-    }
-    function automove(allnum){
-        let count = 0;
-        for(let i=0 ;i<50;count++){
-            let ind = Math.floor(Math.random()*allnum);
-            if(change(ind)){
-                i++;
-                console.log(ind);
-            }
-        }
-        console.log(count);
-        for(let i=0 ;i<3;i++){
-            for(let j=0;j<3;j++){
-                let autoIndex = arr[i][j];
-                let num = i*3+j;
-                if(autoIndex!=8){
-                    $('.image-item').eq(num).children().attr('class','img item'+autoIndex);
-                }else{
-                    $('.image-item').eq(num).children().attr('class','img empty');
-                }
-            }
-        }
-    }
-    automove(9);
-    $(document).ready(function () {
-        $('.image-item').click(function () {
-            let now = $(this).index();
-            if (change(now)) {
-                var imgclass = $(this).children().attr('class');
-                var item33 = $('.empty').attr('class');
-                $('.empty').attr('class', imgclass);
-                $(this).children().attr('class', item33);
-                winbol();
-            }
-        })
-    })
-    /*
-    let a = [
-        [0,1,2],
-        [3,4,5],
-        [6,7,8]
-    ]
-    n+1,n-1,n+3,n-3
-    let a = [
-        [0,0,0],
-        [0,0,1],
-        [0,1,2]
-    ]
-    */
-</script>
 
 </html>

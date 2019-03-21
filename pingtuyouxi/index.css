@@ -1,11 +1,13 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     background-color: #dadada;
 }
-.fallImg{
+
+.fallImg {
     position: absolute;
     right: 50px;
     width: 476px;
@@ -13,74 +15,168 @@ body{
     background-image: url(./timg.jpg);
     background-size: 100%;
     border: solid 5px #e2b900;
-    box-shadow: 10px 8px  15px #999999;
+    box-shadow: 10px 8px 15px #999999;
 }
 
-.all-image{
+.all-image {
     filter: brightness(1);
     width: 714px;
     height: 444px;
     margin: 100px 0 0 50px;
     position: relative;
-    box-shadow: 0 0  15px #999999,0 0  15px #999999,0 0  15px #999999,0 0  15px #999999;
+    box-shadow: 0 0 15px #999999, 0 0 15px #999999, 0 0 15px #999999, 0 0 15px #999999;
 }
-.blink{
+
+.blink {
     animation: bin 2s linear;
 }
-@keyframes bin{
-    0%{filter: brightness(0.7)}
-    30%{filter: brightness(4)}
-    80%{filter: brightness(1.4)}
-    100%{filter: brightness(1)}
+
+@keyframes bin {
+    0% {
+        filter: brightness(0.7)
+    }
+    30% {
+        filter: brightness(4)
+    }
+    80% {
+        filter: brightness(1.4)
+    }
+    100% {
+        filter: brightness(1)
+    }
 }
-.image-item{
+
+.image-item {
     transform: scale(0.99);
-    position: absolute;
+    /* position: absolute; */
+    float: left;
 }
-.img{
+
+.img {
     width: 238px;
     height: 148px;
     background-image: url(./timg.jpg);
     background-size: 300% 300%;
 }
-.img:hover{
+
+.img:hover {
     z-index: 2;
-    box-shadow: 0 0  20px #ff0000 inset;
+    box-shadow: 0 0 20px #ff0000 inset;
 }
-.item0{
-    background-position: 0 0 ;
+
+.choose {
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
 }
-.item1{
-    background-position: -238px 0 ;
+
+.choose-btn {
+    float: left;
+    stroke: rgb(255, 82, 82);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
 }
-.item2{
-    
-    background-position: -476px 0 ;
+
+.text {
+    font-size: 14px;
+    stroke: rgb(255, 82, 82);
+    /* stroke-width: 20px; */
+    fill: none;
+    stroke-width: 1;
+    font-weight: bold;
+    /* text-transform: uppercase;
+    stroke-linecap: round;
+    stroke-linejoin: round; 这里是线样式
+    stroke-dasharray: 10 5; 
+    stroke-dashoffset: -4;
+    text-shadow: 0 0 1px #ff2600;
+    animation: stroke 6s infinite linear; */
 }
-.item3{
-    background-position: 0 -148px ;
+
+.replay:hover .svg-replay, .cimg:hover .svg-cimg {
+    fill: rgb(255, 192, 192);
+    stroke-dasharray: 10;
+    animation: stroke 6s infinite linear;
 }
-.item4{
-    background-position: -238px -148px ;
+
+.replay:hover .text {
+    fill: red;
+    animation: bor 1s infinite linear;
 }
-.item5{
-    background-position: -476px -148px ;
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: -300;
+    }
 }
-.item6{
-    background-position: 0px -296px ;
+
+@keyframes bor {
+    0%, 25% {
+        stroke: red
+    }
+    50% {
+        stroke: #f39c12
+    }
+    75%, 100% {
+        stroke: red;
+    }
 }
-.item7{
-    background-position: -238px -296px ;
+
+.svg-cimg__logo {
+    /* stroke-linecap: round;
+    stroke-linejoin: round; */
+    stroke-width: 2;
 }
-.item8{
-    background-position: -476px -296px ;
+
+.replay:hover, .cimg:hover {
+    transform: scale(1.1);
 }
-.empty{
+
+.item0 {
+    background-position: 0 0;
+}
+
+.item1 {
+    background-position: -238px 0;
+}
+
+.item2 {
+    background-position: -476px 0;
+}
+
+.item3 {
+    background-position: 0 -148px;
+}
+
+.item4 {
+    background-position: -238px -148px;
+}
+
+.item5 {
+    background-position: -476px -148px;
+}
+
+.item6 {
+    background-position: 0px -296px;
+}
+
+.item7 {
+    background-position: -238px -296px;
+}
+
+.item8 {
+    background-position: -476px -296px;
+}
+
+.empty {
     z-index: -1;
     background-image: none;
     box-shadow: #999999 0 0 50px inset;
 }
-.scroll0{
+
+/* .scroll0{
     left: 0;
     top: 0;
 }
@@ -115,4 +211,4 @@ body{
 .scroll8{
     left: 476px;
     top: 296px;
-}
+} */
