@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sss {
+            
+            /* position: absolute;
+        left: 200px; */
+            width: 100px;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .sss:after {
+            content: "";
+            display: inline-block;
+            width: 0px;
+            height: 2px;
+            background: #f6b361;
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+        .all{
+            width: 400px;
+            margin: 200px auto;
+        }
+        .all:hover .sss:after{
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <div class="sss">
+            AAAAA
+        </div>
+    </div>
+
+</body>
+
+</html>
