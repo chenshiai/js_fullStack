@@ -1,0 +1,71 @@
+$fz = 12px;
+$text_color = #333;
+$text_color_normal = #666666
+$bg_color = #f4f5f5;
+
+border-radius(num) {
+  -webkit-border-radius: num;
+  -moz-border-radius: num;
+  -ms-border-radius: num;
+  -o-border-radius: num;
+  border-radius: num;
+}
+
+html {
+  font-size: $fz;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  color: $text_color;
+}
+
+body {
+  font-size: $fz;
+  background-color: $bg_color;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+a.button {
+  border-radius(50%);
+}
+
+.book-card {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto 12px;
+  position: relative;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.book-bought
+  display flex
+  padding 8px 22px 8px 15px
+  border-top 1px solid #ecf0f3
+  cursor pointer
+  align-items center
+  .label
+    color $text_color_normal
+    font-weight 400
+    font-size 16px
+    display inline-flex
+    align-items center
+    flex-shrink 0
+  .users
+    height 24px
+    margin-left 24px
+    display flex
+    flex-grow 1
+    overflow hidden
+    flex-wrap wrap
+    .user
+      width 24px
+      height 24px
+      background-size cover
+      background-repeat no-repeat
+      background-position 50%
+      margin-left 10px
+      border-radius(50%)
+      &:first-child
+        margin-left 0px
