@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //constructor
+    function Otaku(name,age){
+        this.name = name;
+        this.age = age;
+        this.habit = 'Games';
+    }
+    //构造函数有一个prototype属性 原型对象
+    //基于原型的面向对象 
+    Otaku.prototype.strength = 60;
+    Otaku.prototype.sayYourName = function(){
+        console.log('I am '+this.name);
+    };
+
+    // var lgd = new Otaku('李狗蛋',19);
+    function ojectFactory(constructorFunc,name,age){
+        //空对象
+        var obj = {};
+        //怎么拿到构造函数的属性
+        constructorFunc.call(obj,name,age);
+        //怎么让obj 拥有ptototype链上的属性和方法
+        obj.__proto__ = constructorFunc.prototype;
+        return obj;
+    }
+    //不 new 可以拿到一个实例吗
+    // 构造函数是类的源泉
+    var lgd = ojectFactory(Otaku,"李狗蛋",19);
+    console.log(lgd);
+    </script>
+</body>
+</html>
