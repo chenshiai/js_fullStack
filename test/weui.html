@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://weui.io/weui.css">
+    <link rel="stylesheet" href="https://weui.io/example.css">
+</head>
+
+<body>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">姓名</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="name" type="name" value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">qq</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="number" type="number" pattern="[0-9]*" placeholder="请输入qq号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="pnumber" type="number" pattern="[0-9]*" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="date" type="date" value="">
+            </div>
+        </div>
+    </div>
+    <div href="#" class="weui-btn weui-btn_primary" style="margin:20px;">提交</div>
+    <table width="100%" border="1" cellspacing="0" cellpadding="0" style="text-align: center;"> 
+        <tr>
+            <td>姓名</td>
+            <td>qq</td>
+            <td>手机号</td>
+            <td>生日</td>
+        </tr>
+        <tr>
+            <td id='tname'></td>
+            <td id='tqq'></td>
+            <td id='tnum'></td>
+            <td id='tday'></td>
+        </tr>
+    </table>
+    <script>
+        document.getElementsByClassName('weui-btn')[0].onclick = function(){
+            document.getElementById('tname').innerHTML = document.getElementById('name').value;
+            document.getElementById('tqq').innerHTML = document.getElementById('number').value;
+            document.getElementById('tnum').innerHTML = document.getElementById('pnumber').value;
+            document.getElementById('tday').innerHTML = document.getElementById('date').value;
+        }
+    </script>
+</body>
+
+</html>

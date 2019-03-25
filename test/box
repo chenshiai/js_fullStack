@@ -1,0 +1,4 @@
+box1的宽度：width 100px + border 0  + padding 0 =100px
+box1的高度：height 100px + border 0  + padding 0 =100px
+box2的宽度：width 100px  + border 2*2  + padding 0 =104px
+box2的高度：height 100px + border 2*2  + padding 20 =124px
