@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组 map</title>
+</head>
+
+<body>
+    <script>
+        const arr = [{
+            name: "ecut",
+            good: false
+        },
+        {
+            name: "jiangc",
+            good: true
+        },
+        {
+            name: "nanshi",
+            good: true
+        }];
+        // for (let i = 0;
+        //     i < arr.length;
+        //     i++) {
+        //     console.log('for', arr[i]);
+        // }
+        // arr.forEach(function (ele) {
+        //     console.log('forEach', ele);
+        // });
+
+        // 1. 返回一个新的数组
+        // 2. 新数组里面的每一项
+        //  都是循环时 
+        // 回调函数返回的结果
+        // const newArr = arr.map(function (ele) {
+        //     return {
+        //         name:ele.name,
+        //         good:ele.good?"真好":"爱国荣校"
+        //     };aw
+        // });
+        const school = [
+            'dl','jc','ns'
+        ];
+        const newSchools = school.map(function(sc){
+            return "<li>"+sc+"</li>";
+        });
+        console.log(newSchools);
+    </script>
+</body>
+
+</html>
