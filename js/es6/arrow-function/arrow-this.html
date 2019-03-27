@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this</title>
+</head>
+<body>
+    <script>
+    const lilei = {
+        msg:'李雷'
+    }
+    var lileiFunc = function(){
+        var arrow_lileiFunc = () =>{
+            console.log(this.msg);
+        }
+        arrow_lileiFunc();
+    }
+    lileiFunc.call(lilei);
+    var arrow_func_prototype=()=>{
+        consolo.log("1111");
+    }
+    </script>
+</body>
+</html>

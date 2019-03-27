@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>table</title>
 </head>
+
 <body>
+    <table>
+        <thead>
+            <tr>
+                <td>name</td>
+                <td>age</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
     <script>
-    const name = "hmm";
-    const age = 18;
-    const str = `我叫${name},我有${age}岁。`;
+        const ss={
+            name:"韩梅梅",
+            age:18
+        }
+        const str = `
+            <tr>
+                <td>${ss.name}</td>
+                <td>${ss.age}</td>
+            </tr>`
+        var tbody = document.getElementById('tbody');
+        tbody.innerHTML = str;
     </script>
 </body>
+
 </html>
