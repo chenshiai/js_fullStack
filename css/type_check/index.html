@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    var Type = {};
+    for(var i=0,type;type=['String','Array','Number'][i++];){
+        // 立即执行函数是闭包的温床
+        (function (type){
+            // type会找到它定义时的上下文环境中的那个type
+            Type["is" + type] = function(obj){
+                return Object.prototype.toString.call(obj) === '[object '+type+']';
+            }
+        })(type)
+    }
+    // Type.isArray = ()=>{
+    //     return true;
+    // }
+    // Type.isNumber = ()=>{
+    //     return true;
+    // }
+    // Type.isString= ()=>{
+    //     return true;
+    // }
+    </script>
+</body>
+</html>
