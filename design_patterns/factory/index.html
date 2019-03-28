@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function BicycleShop() { }
+        function Interface(name, methods) {
+
+        }
+        Interface.ensureImplements = function (object) {
+            return true;
+        }
+
+        BicycleShop.prototype = {
+            sellBicycle: function (model) {
+                var bicycle;
+                switch (model) {
+                    case 'Giant':
+                        bicycle = new Giant();
+                        break;
+                    case 'Speedster':
+                        bicycle = new Speedster();
+                        break;
+                    case 'UC':
+                        bicycle = new UC();
+                        break;
+                }
+                // Interface.ensureImplelements(bicycle, ['assemble', 'wash']);
+                // bicycle.prototype=new Interface();
+                // bicycle.assemble();
+                // bicycle.wash();
+                return bicycle;
+            }
+        }
+
+
+        function Giant() {
+            console.log("购买Giant");
+        }
+        function Speedster() {
+            console.log("购买Speedster");
+        }
+        function UC() {
+            console.log("购买UC");
+        }
+        var californiaCruisers = new BicycleShop();
+        var bicycle = californiaCruisers.sellBicycle('Speedster');
+    </script>
+</body>
+
+</html>
