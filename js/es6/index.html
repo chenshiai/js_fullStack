@@ -20,17 +20,12 @@
         </tbody>
     </table>
     <script>
-        const ss={
-            name:"韩梅梅",
-            age:18
+        var a = {
+            name:"sss",
+            getName:function(){
+                console.log(this.name);
+            }
         }
-        const str = `
-            <tr>
-                <td>${ss.name}</td>
-                <td>${ss.age}</td>
-            </tr>`
-        var tbody = document.getElementById('tbody');
-        tbody.innerHTML = str;
     </script>
 </body>
 
