@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const obj = {
+        foo:'foo val',
+        bar:'bar val',
+        baz:'baz val'
+    }
+    var aa = obj.foo,bb = obj.bar;
+    // 解构赋值
+    const {foo: str1,baz:str2} = obj;
+
+    const objec1 = {
+        p:['hello',{msg:'World'}]
+    }
+    const {p:[hello,world]} = objec1;
+    </script>
+</body>
+</html>

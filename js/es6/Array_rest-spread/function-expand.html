@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function expand</title>
+</head>
+<body>
+    <script>
+        // es5 赋默认值 两种常见的作法
+    function Person(name){
+        // 赋默认值
+        // if(!name){
+        //     name = "default name";
+        // }
+        this.name = name || "default name";
+    }
+    // es6 赋默认值的做法
+    function Person_es6(name = "default name"){
+        this.name = name;
+    }
+    const p1 = new Person('cst');
+    const p2 = new Person();
+    // rest参数 形式 (...变量名)
+    // 作用：获取函数多余参数
+    // 搭配的变量名是一个真数组
+    // Rest parameter must be last
+    const arrow_sum = (a,...args)=>{
+        console.log(a,args);
+    }
+    arrow_sum(1,2,3,4);
+    </script>
+</body>
+</html>
