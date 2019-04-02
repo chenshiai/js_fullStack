@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Number.prototype.add = function (num) {
+            return this + num;
+        }
+        Number.prototype.reduce = function (num) {
+            return this - num;
+        }
+        Number.prototype.ride = function (num) {
+            return this * num;
+        }
+        Number.prototype.except = function (num) {
+            return this / num;
+        }
+        var numberObj = new Number(10);
+        console.log((10).add(3).ride(2));
+    </script>
+</body>
+
+</html>
