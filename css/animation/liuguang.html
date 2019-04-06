@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img-light {
+            position: relative;
+            width: 640px;
+            height: 384px;
+        }
+
+        .img-light::after {
+            content: "";
+            height: 100%;
+            width: 100px;
+            transform: skewX(-25deg) translateZ(0);
+            background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.3) 50%, hsla(0, 0%, 100%, 0));
+            position: absolute;
+            left: -50%;
+            top: 0;
+            z-index: 2;
+        }
+
+        .img-light:hover::after {
+            transition: left 1s ease-in-out;
+            left: 150%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-light">
+        <img src="timg.jpg" width="640" height="384">
+    </div>
+
+</body>
+
+</html>
