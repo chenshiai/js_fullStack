@@ -1,155 +1,257 @@
-$font_color_white = #ffffff;
+$hdbg_color = #e54847
+$font_color_white = #ffffff
+html,body
+  width 100%
+.flex
+  display flex
+.flex1
+  flex 1
+.section-til
+  font-size 17px
+  color #000000
+.action-list.section-til
+  padding-left 0.4rem
+.nav
+  height 1.067rem
+  font-size 18px
+  text-align center
+  background-color $hdbg_color
+  padding 6px
+  box-sizing border-box
+  .arrow-left
+    float left
+    height 100%
+    position relative
+    &:after
+      content ''
+      width 12px
+      height 12px
+      position absolute
+      top 50%
+      left 16px
+      border 2px solid #ffffff
+      border-width 0 0 2px 2px
+      box-sizing border-box
+      transform rotate(45deg) translateY(-50%)
+  span
+    color $font_color_white
+    display inline-block
+.page
+  background-color #f4f4f4
+  position relative
+  z-index 1
+  margin 0
+  color #555555
+  min-width 3.1rem
+  -webkit-user-select none
+  -webkit-tap-highlight-color rgba(255,255,255,0)
+  font 14px/1.5 Arial,Helvetica,sans-serif
+  section
+    background-color #fff
+    border-bottom 1px solid #e5e5e5
+  .movie-header
+    border-bottom none 
+    padding 0
+    background #f8f8f8
+    .movie
+      color $font_color_white
+      padding 0.4rem
+      line-height 1
+      overflow hidden
+      position relative
+      box-sizing border-box
+      filter blur(0)
+      .movie-background,
+      .movie-filter
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+      .movie-background
+        z-index 0
+        filter blur(.6rem)
+        background-image url(./images/header-bg.jpg)
+        background-size cover
+        background-position-y 40%
+        background-repeat no-repeat
+      .movie-filter
+        background-color #40454d
+        opacity .55
+      .movie-container
+        overflow hidden
+        z-index 1
+        position relative
+        .movie-cover
+          float left
+          width 2.854rem
+          height 4rem
+          border 1px solid #f0f2f3
+          position relative
+          .link
+            cursor pointer
+            display block
+            width 100%
+            height 100%
+            .img
+              width 100%
+          &:after
+            content ''
+            position absolute
+            right 0.1rem
+            bottom 0.1rem
+            width 0.667rem
+            height 0.667rem
+            background-image url(./images/bofang.png)
+            background-size 100% auto
+            border-radius 100%
+            opacity .7
+        .movie-content
+          overflow hidden
+          padding-left 0.4rem
+          .movie-name
+            font-size 17px
+            margin 0.08rem 0
+          .movie-ename
+            font-size 12px
+            margin-bottom 0.2rem
+          .movie-score
+            font-size 12px
+            margin-bottom 0.3rem
+            .rating
+              .img
+                width 0.48rem
+                height 0.48rem
+                margin-right 2px
+              .rating-score
+                font-size 0.48rem
+                color #ffc600
+          .movie-detail
+            font-size 12px
+            margin-bottom 0.16rem
+            opacity .7
+            p
+              margin-bottom 0.14rem
+      .operating
+        margin-top 0.5rem
+        div
+          border 1px solid rgba(255,255,255,.4)
+          background-color rgba(255,255,255,.4)
+          font-size 14px
+          color $font_color_white
+          position relative
+          z-index 2
+          text-align center
+          padding 0.25rem 0
+          border-radius 4px
+          img
+            vertical-align middle
+          span
+            vertical-align middle
+        .movie-watch
+          margin-right .3rem
+          img
+            width 14px
+            height 14px
+        .movie-mark
+          img
+            width 18px
+            height 18px
+  .section-seperate
+    padding-top 0.4rem
+    margin-bottom 0.3rem
+    border-top 1px solid #e5e5e5
+  .section-expander
+    padding-left 0.4rem
+    padding-right 0.4rem
+    .text-expander
+      .text-expander__content.close
+        min-height 65px
+        display -webkit-box
+        overflow hidden
+        text-overflow ellipsis
+        word-break break-all
+        -webkit-box-orient vertical
+        -webkit-line-clamp 3
+      .text-expander__button
+        height 0.7rem
+        text-align center
+        .icon-chevron__down
+          width 10px
+          height 10px
+          border 1px solid #aaaaaa
+          display inline-block
+          border-width 0 1px 1px 0
+          box-sizing border-box
+          transform rotateZ(45deg)
+          transition transform .5s
+        .icon-chevron__down.up
+          transform rotateZ(-135deg)
+    
+  
+  
+  .section-seperate
+    .movie-celebritis
+      width 100%
+      padding 0.3rem 0.3rem 0.1rem 0.3rem
+      white-space nowrap
+      overflow-x scroll
+      box-sizing border-box
+      li
+        text-align center
+        display inline-block
+        padding 0.04rem
+        .link
+          color #000000
+          .movie-celebritis__pic
+            width 1.7334rem
+            height 2.4rem
+            margin 0.05rem
+            img
+              width 100%
+          span
+            display block
+            font-size 0.2rem
+            text-overflow ellipsis
+            overflow hidden
+          .movie-celebritis__roles
+            color #999999
 
-html, body {
-    width: 100%;
-}
+  .movie-booking
+    padding-bottom 0.2rem
+    .weui-flex
+      text-align center
+      .placeholder
+        span
+          font-size 24px
+          color #d96a3d
+        p
+          color #bababa
+          margin-top 0.1rem
+  .movie-photo
+    .movie-photo__list
+      width 100%
+      padding 0.3rem 0.3rem 0.2rem
+      overflow-x scroll
+      white-space nowrap
+      box-sizing border-box
+      .stage-img-container
+        margin-right 0.13333rem
+        display inline-block
+        width 2.4rem
+        height 1.876rem
+        .movie-celebritis__pic
+          width 100%
+          height 100%
+          img
+            width 100%
+            height 100%
+        &:first-child
+          width 3.3334rem
+        &:last-child
+          margin-right 0
 
-.nav {
-    height: 1.067rem;
-    font-size: 18px;
-    text-align: center;
-    background-color: #1e2025;
-    padding: 6px;
-    box-sizing: border-box;
 
-    .arrow-left {
-        float: left;
-        height: 100%;
-        position: relative;
-
-        &:after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border: 2px solid #fff;
-            top: 50%;
-            left: 16px;
-            border-width: 0 0 2px 2px;
-            transform: rotate(45deg) translateY(-55%);
-        }
-    }
-}
-
-span {
-    color: $font_color_white;
-    display: inline-block;
-}
-
-.page {
-    background-color: #f4f4f4;
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    color: #555555;
-    min-width: 3.1rem;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font: 14px / 1.5;
-    font-family: Arial, Helvetica, sans-serif;
-
-    section {
-        background-color: #ffffff;
-        border-bottom: solid 1px #e5e5e5;
-    }
-
-    .movie-header {
-        padding: 0;
-        background-color: #f8f8f8;
-        border-bottom: none;
-
-        .movie {
-            color: $font_color_white;
-            padding: 0.4rem;
-            line-height: 1;
-            overflow: hidden;
-            position: relative;
-            box-sizing: border-box;
-            filter: blur(0);
-
-            .movie-bg, .movie-filter {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }
-
-            .movie-bg {
-                z-index: 0;
-                filter: blur(0.6rem);
-                background-image: url('./images/images/header-bg.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position-y: 40%;
-            }
-
-            .movie-filter {
-                background-color: #40454d;
-                opacity: 0.55;
-            }
-
-            .movie-content {
-                position: relative;
-                z-index: 1;
-                padding-left: 16px;
-                overflow: hidden;
-
-                .movie-name {
-                    font-size: 17px;
-                    margin: 0.08rem 0;
-                }
-
-                .movie-ename {
-                    font-size: 12px
-                    margin-bottom: 0.3rem;
-                }
-
-                .movie-score{
-                    font-size: 12px;
-                    margin-bottom: 0.3rem;
-                    .rating{
-                        .star-img{
-                            width: 0.48rem;
-                            height: 0.48rem;
-                            margin-right: 2px;
-                            }
-                        }
-                    }        
-                }
-            }
-
-            .movie-cover {
-                float: left;
-                width: 2.854rem;
-                height: 4rem;
-                position: relative;
-                border: 1px solid #f0f2f3;
-
-                .link {
-                    cursor: pointer;
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-
-                    img {
-                        width: 100%;
-                    }
-                }
-
-                &:after {
-                    content: '';
-                    width: 0.667rem;
-                    height: 0.667rem;
-                    border-radius: 50%;
-                    background-image: url('./images/images/bofang.png');
-                    background-size: 100% auto;
-                    position: absolute;
-                    right: 0.1rem;
-                    bottom: 0.1rem;
-                    opacity: 0.7;
-                }
-            }
-        }
-    }
-}
+#toast
+  display none
+              
