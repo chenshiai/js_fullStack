@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文字少就居中，文字多左对齐</title>
+  <style>
+  .box{
+    border: 1px solid #000000;
+    width: 100px;
+    text-align: center;
+  }
+
+  .content{
+    display: inline-block;
+    text-align: left;
+    /* word-wrap: break-word;
+    word-break:break-all; */
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap; 
+  }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <p class="content">
+        'asdasdasdasssssssssssssss'
+    </p>
+  </div>
+</body>
+</html>
