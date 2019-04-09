@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery源码解析 - 旅梦源码课</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <img src="https://pic.36krcnd.com/201904/09061934/9axl9yt10w5w6kq6!heading" alt="" onload="imgLoaded()">
+  <!-- <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.min.js"></script> -->
+  <script>
+    function JQueryEle(ele){
+      this.ele = ele;
+    }
+    JQueryEle.prototype.html = function(str){
+      this.ele.innerHTML = str;
+    }
+    function $(selector){
+      if(typeof selector === 'function'){
+        document.addEventListener('DOMContentLoaded',selector);
+      }else if(typeof selector === 'string'){
+        // $函数，有.html()方法 放弃prototype写法
+        // $函数返回值是一个对象
+        const ele = document.querySelector(selector);
+        if(ele){
+          return new JQueryEle(ele);
+        }
+      }
+    }
+    function imgLoaded(){
+      console.log("图片加载完成");
+    }
+    // jQuery 的爱 API简约，更好的兼容性。
+    // DOMContentLoaded在IE有兼容问题
+    $(function(){
+      $('#root').html('<p>我要去云南</p>');
+    })
+    // 当html，css很大的时候，
+    // http请求 1.自身 2.img 3.jQuery.js
+    window.onload = function(){
+      // 整个浏览器资源加载完成
+      console.log("页面加载完成");
+    }
+    document.addEventListener('DOMContentLoaded',function(){
+      // html+css加载完成
+      // js开始的地方
+      console.log('DOM ready');
+    })
+    
+  </script>
+</body>
+</html>
