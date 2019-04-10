@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mummy</title>
+  <script src="https://cdn.bootcss.com/phaser/2.6.2/phaser.min.js"></script>
+</head>
+<body>
+  <!-- 游戏挂载点 canvas -->
+  <div id="game"></div>
+  <script>
+  let width = 800;
+  let height = 600;
+  document.addEventListener('DOMContentLoaded',() => {
+    // phaser 2d 游戏框架
+    // 像DOM 来写canvas
+    var game = new Phaser.Game(width, height, Phaser.AUTO, '#game', {
+      preload: preload,
+      create: create,
+      update: update
+
+    });
+    // 资源预加载
+    function preload(){
+      game.load.image('lazur','./images/thorn_lazur.png');
+      game.load.spritesheet('mummy','./images/metalslug_mummy37x45.png', 37, 45, 18);
+      // 高/宽/帧数
+    }
+    var back, mummy, anim, loopText;
+    function create(){
+      back = game.add.image(0, -400, 'lazur');
+      back.scale.set(2);
+      back.smoothed = false;
+
+      mummy = game.add.sprite(200, 360, 'mummy', 10);
+      mummy.scale.set(4);
+      mummy.smoothed = false;
+
+      // 动画也是一个对象
+      anim = mummy.animations.add('walk');
+      
+
+      // 添加一个动画开始的回调函数
+      anim.onStart.add(animationsStarted, this);
+      anim.onLoop.add(animationsLooped, this);
+      anim.onComplete.add(animationsStopped, this);
+
+      anim.play(3,true);
+    }
+
+    function animationsStarted(sprite, animation){
+      game.add.text(32, 32, 'Animation started', {fill:'#fff'});
+    }
+    function animationsLooped(sprite, animation){
+      if(animation.loopCount==1){
+        loopText = game.add.text(32, 64, 'Animation looped', {fill:'#fff'});
+      } else {
+        loopText = game.add.text(32, 64, 'Animation looped x2', {fill:'#fff'});
+        animation.loop = false;
+      }
+    }
+    function animationsStopped(sprite, animation){
+      if(anim.isPlaying){
+        back.x -= 1;
+      }
+      loopText = game.add.text(32, 96, 'Animation stopped', {fill:'#fff'});
+    }
+
+    function update(){
+      if(anim.isPlaying){
+        back.x -= 0.6;
+      }
+    }
+    // 游戏业务规则
+    // - 预加载图片等资源 preload
+    // - 游戏的玩法 create 加精灵/加地图/加一切想加的东西
+    // - 游戏动起来 update
+  })
+  </script>
+</body>
+</html>
