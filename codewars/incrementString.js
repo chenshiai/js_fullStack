@@ -16,5 +16,11 @@ function incrementString(strng) {
     // 第四个参数：原字符串替换位置
     // ^匹配开头 $匹配结尾
   });
+
 }
-console.log(incrementString('foobar009'));
+function arrsum(){
+  var arr = [1,2,3];
+  console.log(arr.reduce((sum,val)=>{return sum + val},0))
+  
+}
+arrsum();
