@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>贪食蛇</title>
+  <style>
+    #gameCanvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #score {
+      text-align: center;
+      font-size: 70px;
+      font-family: serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="score">0</div>
+  <canvas id="gameCanvas" width="300" height="300"></canvas>
+  <script>
+    let dx = 0, dy = 0;
+    let snake = [
+      { x: 150, y: 150 },
+      { x: 140, y: 150 },
+      { x: 130, y: 150 },
+      { x: 120, y: 150 },
+      { x: 110, y: 150 }
+    ];
+    const gameCanvas = document.getElementById('gameCanvas');
+    const ctx = gameCanvas.getContext('2d') //绘制上下文环境 API在ctx上
+    const GAME_SPEED = 100;
+    var GAME_START = true;
+    function main() {
+      setTimeout(() => {
+        clearCanvas();
+        moveSnake();
+        drawSnake();
+        main();
+      }, GAME_SPEED);
+    }
+
+    function clearCanvas() {
+      ctx.fillStyle = 'white';
+      ctx.strokeStyle = 'black';
+      ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.width);
+      ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.width);
+    }
+
+    // 初始绘制蛇
+    function drawSnake() {
+      const smollSnake = gameCanvas.getContext('2d');
+      smollSnake.fillStyle = 'black';
+      snake.forEach(drawSnakePart);
+    }
+
+    function drawSnakePart(part) {
+      ctx.fillStyle = 'lightgreen';
+      ctx.strokeStyle = 'darkgreen';
+      ctx.fillRect(part.x, part.y, 10, 10);
+      ctx.strokeRect(part.x, part.y, 10, 10);
+    }
+
+    function moveSnake() {
+      // canvas 在上一帧的基础上绘制下一帧
+      if (GAME_START) {
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+        snake.unshift(head);
+        snake.pop();
+        gameOver();
+      }
+    }
+
+    function gameOver(){
+      if(snake[0].x<0||snake[0].x>290||snake[0].y<0||snake[0].y>290){
+          GAME_START = false;
+          alert("Game Over!")
+      }
+    }
+
+    function changeDirection(event) {
+      const LEFT_KEY = 37;
+      const RIGHT_KEY = 39;
+      const UP_KEY = 38;
+      const DOWN_KEY = 40;
+      const keyPressed = event.keyCode;
+      const goingRight = dx === 10;
+      const goingLeft = dx === -10;
+      const goingUp = dy === -10;
+      const goingDown = dy === 10;
+      switch (keyPressed) {
+        case LEFT_KEY: {
+          if (!goingRight) {
+            dx = -10;
+            dy = 0;
+          }
+          break;
+        }
+        case RIGHT_KEY: {
+          if (!goingLeft) {
+            dx = 10;
+            dy = 0;
+          }
+          break;
+        }
+        case UP_KEY: {
+          if (!goingDown) {
+            dx = 0;
+            dy = -10;
+          }
+          break;
+        }
+        case DOWN_KEY: {
+          if (!goingUp) {
+            dx = 0;
+            dy = 10;
+          }
+          break;
+        }
+        default: break;
+      }
+    }
+    document.addEventListener('keydown', changeDirection);
+    main();
+
+  // 蛇 由几个方块组成  rect 位置 坐标
+  </script>
+</body>
+
+</html>
