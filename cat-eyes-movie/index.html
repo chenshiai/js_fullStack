@@ -112,14 +112,14 @@
         </div>
         <div class="weui-flex__item">
           <div class="placeholder bookingWeek">
-              <span></span>
-              <p>首周票房(万)</p>
+            <span></span>
+            <p>首周票房(万)</p>
           </div>
         </div>
         <div class="weui-flex__item">
           <div class="placeholder bookingTotal">
-              <span></span>
-              <p>累计票房(万)</p>
+            <span></span>
+            <p>累计票房(万)</p>
           </div>
         </div>
       </div>
@@ -131,6 +131,54 @@
         <li class="stage-img-container" style="display:none">
           <div class="movie-celebritis__pic">
             <img src="" alt="">
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- section6 -->
+    <section class="movie-photo section-seperate">
+      <p class="section-till pro_r">讨论
+        <span class="join-comment">参与讨论</span>
+      </p>
+      <ul class="movie-comment">
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>全部</span>
+            <span class="comment-item__num">233</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>好评</span>
+            <span class="comment-item__num">233</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>差评</span>
+            <span class="comment-item__num">233</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- section7 -->
+    <section class="movie-photo section-seperate">
+      <p class="section-till">精选</p>
+      <ul class="chosen-comment" id="">
+        <li class="chosen-comment__item">
+          <div class="item-level">
+            <img src="" alt="">
+          </div>
+          <div class="item-detail">
+            <div class="item-detail__hd">
+              <div>
+                <span class="nick-name">ssss</span>
+                <span class="level">
+                  <img src="" alt="">
+                </span>
+              </div>
+            </div>
+            <p class="item-score__desc">给部电影发了<span>10</span>分</p>
           </div>
         </li>
       </ul>
@@ -217,23 +265,28 @@
         }
       }
       //票房
-      function bookingSet(booking){
+      function bookingSet(booking) {
         $('.ranking span').text(booking.ranking);
         $('.bookingWeek span').text(booking.bookingWeek);
         $('.bookingTotal span').text(booking.bookingTotal);
       }
       // 剧照
-      function photo(arr){
-        for(let i=arr.length;i--;){
+      function photo(arr) {
+        for (let i = arr.length; i--;) {
           $(".movie-photo__list").prepend(`<li class="stage-img-container">
           <div class="movie-celebritis__pic">
             <img src="${arr[i]}" alt="">
           </div>
         </li>`)
         }
-        
+
+
+      }
+      function comment() {
+
       }
     })()
+
   </script>
 </body>
 
