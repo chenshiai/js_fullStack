@@ -1,4 +1,8 @@
 function generateHashtag(str){
-    return (str.length>140||str===""||str===null) ?  false :  "#" + str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());  
+    if(str===""||str===null){
+        return false;
+    }
+    var str1 = str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase()).replace(/ /g,'');
+    return str1.length>139 || str1 === "" ? false : "#" +  str1;
 }
-console.log(generateHashtag("How are you"));
+console.log(generateHashtag("a".repeat(140)));
