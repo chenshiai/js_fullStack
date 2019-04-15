@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Baidu Map </title>
+  <style type="text/css">
+    html {
+      height: 100%
+    }
+
+    body {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+    }
+
+    #container {
+      height: 100%
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+</body>
+
+</html>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uulErYgnzwRK2NECwEGuRSuMy9vLyVdf"></script>
+
+<script>
+  var map = new BMap.Map("container");          // 创建地图实例  
+  var point = new BMap.Point(116.404, 39.915);  // 创建点坐标  
+  map.centerAndZoom(point, 15);
+  window.setTimeout(function () {
+    map.panTo(new BMap.Point(116.409, 39.918));
+  }, 2000);
+  map.enableScrollWheelZoom(true);
+  var geoc = new BMap.Geocoder();
+  map.addEventListener("click", function (e) {
+    var pt = e.point;
+    geoc.getLocation(pt, function (rs) {
+      var addComp = rs.addressComponents;
+      alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+    });
+  });
+  var geolocation = new BMap.Geolocation();
+  geolocation.getCurrentPosition(function (r) {
+    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+      var mk = new BMap.Marker(r.point);
+      map.addOverlay(mk);
+      map.panTo(r.point);
+      alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+    }
+    else {
+      alert('failed' + this.getStatus());
+    }
+  });
+</script>
