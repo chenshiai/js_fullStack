@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动端手势</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    img {
+      width: 160px;
+    }
+
+    .swipeBox {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+      overflow: hidden;
+      font-size: 0;
+      position: relative;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .scroll {
+      width: 480px;
+      height: 160px;
+      transform: all 0.2s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="example">
+    <div class="title"> tap </div>
+    <div class="imgBox tapBox">
+      <img
+        src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+        alt="">
+    </div>
+
+    <div class="title"> pinch </div>
+    <div class="imgBox">
+      <img id="pinchImg"
+        src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+        alt="">
+    </div>
+
+    <div class="title"> rotate </div>
+    <div class="imgBox">
+      <img id="rotateImg"
+        src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+        alt="">
+    </div>
+
+    <div class="title"> pinch + rotate </div>
+    <div class="imgBox">
+      <img id="pinchRotateImg"
+        src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+        alt="">
+    </div>
+
+    <div class="title"> pressMove</div>
+    <div class="imgBox">
+      <img id="pressMoveImg"
+        src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+        alt="">
+    </div>
+
+    <div class="title"> swipe</div>
+    <div class="imgBox">
+      <div class="swipeBox">
+        <div class="scroll" id="swipeScroll">
+          <img
+            src="https://leancloud-gold-cdn.xitu.io/362ee93999bd1194c5f9.png?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" />
+          <img src="http://alloyteam.github.io/AlloyFinger/asset/test2.png" />
+          <img src="http://alloyteam.github.io/AlloyFinger/asset/test3.png" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="./vconsole.min.js"></script>
+  <script src="./alloy_finger.js"></script>
+  <script>
+    new VConsole();
+    const pinchImg = document.getElementById('pinchImg');
+    const rotate = document.getElementById('rotateImg');
+    const pinchRotateImg = document.getElementById('pinchRotateImg');
+    const pressMoveImg = document.getElementById('pressMoveImg');
+    const swipeScroll = document.getElementById('swipeScroll');
+    function getNumberByTransformProperty(str) {
+      let propertyArr = str.split(/[\(\)]/);
+      return parseInt(propertyArr[1]);
+    }
+    new AlloyFinger(
+      swipeScroll,
+      {
+        swipe: function (evt) {
+          if (evt.direction === 'Left') {
+            let initStr = swipeScroll.style.transform || 'translateX(0)';
+            let x = getNumberByTransformProperty(initStr);
+            swipeScroll.style.transform = `translateX(${-160 + x})`;
+          } else if (evt.direction === 'Right') {
+            let initStr = swipeScroll.style.transform || 'translateX(0)';
+            let x = getNumberByTransformProperty(initStr);
+            swipeScroll.style.transform = `translateX(${160 + x}deg)`;
+          }
+        }
+      }
+    )
+    new AlloyFinger(
+      pressMoveImg,
+      {
+        pressMove: function (evt) {
+          let initStr = pressMoveImg.style.transform || 'translateX(0) translateY(0)';
+          let initArr = initStr.split(' ');
+          let x = getNumberByTransformProperty(initArr[0]);
+          let y = getNumberByTransformProperty(initArr[1]);
+          pressMoveImg.style.transform = `translateX(${evt.deltaX + x}px) translateY(${evt.deltaY + y}px)`;
+        }
+      }
+    )
+    new AlloyFinger(
+      pinchRotateImg,
+      {
+        pinch: function (evt) {
+          let initStr = pinchRotateImg.style.transform || 'rotate(0deg)';
+          let initStyleArr = initStr.split(' ');
+          pinchRotateImg.style.transform = `${initStyleArr[0]} ${initStyleArr[1]}`;
+          pinchRotateImg.style.scale = evt.zoom;
+        },
+        rotate: function (evt) {
+          let initStr = pinchRotateImg.style.transform || 'rotate(0deg)';
+          let initStyleArr = initStr.split(' ');
+          let angle = getNumberByTransformProperty(initStyleArr[0]);
+          pinchRotateImg.style.transform = `rotate(${evt.angle + angle}deg) ${initStyleArr[1]}`;
+        }
+      }
+    )
+
+    new AlloyFinger(
+      rotate,
+      {
+        rotate: function (evt) {
+          let rotateStr = rotate.style.transform || 'rotate(0)';
+          let rotateNum = getNumberByTransformProperty(rotateStr);
+          rotate.style.transform = `rotate(${evt.angle + rotateNum}deg)`
+        }
+      }
+    )
+    new AlloyFinger(
+      pinchImg,
+      {
+        pinch: function (evt) {
+          pinchImg.style.transform = `scale(${evt.zoom})`;
+        }
+      }
+    )
+    new AlloyFinger(
+      document.querySelector('.tapBox'),
+      {
+        // 
+        tap: function () {
+          console.log('tap');
+        },
+        doubleTap: function () {
+          console.log('doubleTap');
+        }
+      }
+    )
+  </script>
+
+
+</body>
+
+</html>
