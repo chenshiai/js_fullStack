@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>硬件设备</title>
+</head>
+
+<body>
+  <!-- 等getUserMedia -->
+  <video src="" id="video" autoplay></video>
+  <canvas id="canvas"></canvas>
+  <div class="btn-container">
+    <button id="photo" class="btn">
+      拍照
+    </button>
+  </div>
+</body>
+<script>
+  const videoConstraints = {
+    width: 1366,
+    height: 768
+  }
+  const videoNode = document.querySelector('#video');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  canvas.width = videoConstraints.width;
+  canvas.height = videoConstraints.height;
+  navigator.getUserMedia({ audio: true, video: videoConstraints }, function (stream) {
+    videoNode.srcObject = stream;
+  }, function(error){
+    console.log(error);
+  })
+  document.getElementById('photo').addEventListener('click', function(event){
+    event.preventDefault(); //阻止原有节点的默认事件
+    context.drawImage(videoNode, 0, 0, canvas.width, canvas.height);
+    download(canvas.toDataURL('image/jpeg'))
+  })
+  function download(src){
+    const a = document.createElement('a');
+    a.setAttribute('download', new Date());
+    a.href = src;
+    a.click();
+  }
+</script>
+
+</html>
