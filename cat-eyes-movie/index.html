@@ -84,41 +84,40 @@
         </div>
       </div>
     </section>
-
     <!-- section3 -->
     <section class="section-seperate">
       <p class="action-list section-til">演职人员</p>
-      <ul class="movie-celebritis">
-        <li style="display:none">
+      <ul class="movie-celebrities">
+        <!-- <li>
           <a href="#" class="link">
-            <div class="movie-celebritis__pic">
-              <img src="http://p1.meituan.net/moviemachine/6e06b1eee9a74c9573fdb8150fb8561271624.jpg@130w_180h.webp">
+            <div class="movie-celebrities__pic">
+              <img src="http://p1.meituan.net/moviemachine/6e06b1eee9a74c9573fdb8150fb8561271624.jpg" alt="">
             </div>
-            <span class="movie-celebritis__nick"></span>
-            <span class="movie-celebritis__roles"></span>
+            <span class="movie-celebrities-nick">wqwqw</span>
+            <span class="movie-celebrities-roles">fdf</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- section4 -->
-    <section class="movie-booking section-seperate">
-      <p class="action-list section-til">票房</p>
+    <section class="movie-booking section-seperate section-expander">
+      <p class="section-til">票房</p>
       <div class="weui-flex">
         <div class="weui-flex__item">
-          <div class="placeholder ranking">
-            <span></span>
+          <div class="placeholder">
+            <span id="ranking"></span>
             <p>昨日票房排行</p>
           </div>
         </div>
         <div class="weui-flex__item">
-          <div class="placeholder bookingWeek">
-            <span></span>
+          <div class="placeholder">
+            <span id="bookingWeek"></span>
             <p>首周票房(万)</p>
           </div>
         </div>
         <div class="weui-flex__item">
-          <div class="placeholder bookingTotal">
-            <span></span>
+          <div class="placeholder">
+            <span id="bookingTotal"></span>
             <p>累计票房(万)</p>
           </div>
         </div>
@@ -127,17 +126,19 @@
     <!-- section5 -->
     <section class="movie-photo section-seperate">
       <p class="action-list section-til">视频和剧照</p>
-      <ul class="movie-photo__list">
-        <li class="stage-img-container" style="display:none">
-          <div class="movie-celebritis__pic">
-            <img src="" alt="">
-          </div>
-        </li>
+      <ul class="movie-photo__lists">
+        <!-- <li class="stage-img-container">
+          <a href="#" class="link">
+            <div class="movie-celebrities__pic">
+              <img src="http://p1.meituan.net/moviemachine/6e06b1eee9a74c9573fdb8150fb8561271624.jpg" alt="">
+            </div>
+          </a>
+        </li> -->
       </ul>
     </section>
     <!-- section6 -->
     <section class="movie-photo section-seperate">
-      <p class="section-till pro_r">讨论
+      <p class="action-list section-til pos_r">讨论
         <span class="join-comment">参与讨论</span>
       </p>
       <ul class="movie-comment">
@@ -163,7 +164,7 @@
     </section>
     <!-- section7 -->
     <section class="movie-photo section-seperate">
-      <p class="section-till">精选</p>
+      <p class="action-list section-til">精选</p>
       <ul class="chosen-comment" id="">
         <li class="chosen-comment__item">
           <div class="item-level">
@@ -178,7 +179,7 @@
                 </span>
               </div>
             </div>
-            <p class="item-score__desc">给部电影发了<span>10</span>分</p>
+            <p class="item-score__desc">给部电影打了<span>10</span>分</p>
           </div>
         </li>
       </ul>
@@ -195,7 +196,7 @@
   <script>
     (function () {
       $.ajax({
-        url: 'https://www.easy-mock.com/mock/5ca466975eeed03805bf4942/cat_eyes_movie/catEyesMovie',
+        url: 'https://www.easy-mock.com/mock/5ca2c29464930718b239eb94/lm/lvmeng/myMovie-demo',
         type: 'get',
         success: function (res) {
           console.log(res)
@@ -210,9 +211,9 @@
           $('.address-time .time').html(res.data.time)
           $('.movie-detail .date').html(res.data.date)
           $('.text-expander__content p').html(res.data.desc)
-          celebrity(res.data.person);
-          bookingSet(res.data.booking);
-          photo(res.data.pictures);
+          celebrity(res.data.person)
+          booking(res.data.booking)
+          photo(res.data.pictures)
         }
       })
       function star(e) {
@@ -251,42 +252,38 @@
         }
       })
       // 演员表
-      function celebrity(arr) {
-        for (let i = arr.length; i--;) {
-          $('.movie-celebritis').prepend(`<li>
+      function celebrity(e) {
+        for (let n of e) {
+          $('.movie-celebrities').append(`<li>
           <a href="#" class="link">
-            <div class="movie-celebritis__pic">
-              <img src="${arr[i].avatal}">
+            <div class="movie-celebrities__pic">
+              <img src="${n.avatal}" alt="">
             </div>
-            <span class="movie-celebritis__nick">${arr[i].name}</span>
-            <span class="movie-celebritis__roles">${arr[i].sort}</span>
+            <span class="movie-celebrities-nick">${n.name}</span>
+            <span class="movie-celebrities-roles">${n.sort}</span>
           </a>
         </li>`)
         }
       }
-      //票房
-      function bookingSet(booking) {
-        $('.ranking span').text(booking.ranking);
-        $('.bookingWeek span').text(booking.bookingWeek);
-        $('.bookingTotal span').text(booking.bookingTotal);
+      // 票房 
+      function booking(e) {
+        $('#ranking').html(e.ranking)
+        $('#bookingWeek').html(e.bookingWeek)
+        $('#bookingTotal').html(e.bookingTotal)
       }
       // 剧照
-      function photo(arr) {
-        for (let i = arr.length; i--;) {
-          $(".movie-photo__list").prepend(`<li class="stage-img-container">
-          <div class="movie-celebritis__pic">
-            <img src="${arr[i]}" alt="">
-          </div>
+      function photo(e) {
+        for (let m of e) {
+          $('.movie-photo__lists').append(`<li class="stage-img-container">
+          <a href="#" class="link">
+            <div class="movie-celebrities__pic">
+              <img src="${m}" alt="">
+            </div>
+          </a>
         </li>`)
         }
-
-
-      }
-      function comment() {
-
       }
     })()
-
   </script>
 </body>
 
