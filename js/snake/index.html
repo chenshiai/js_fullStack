@@ -19,11 +19,19 @@
       font-size: 70px;
       font-family: serif;
     }
+
+    #gameP {
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
   <div id="score">0</div>
+  <div id="gameP">
+    <p>按下空格键可 开始/暂停 游戏</p>
+    <span id="gameP_s"></span>
+  </div>
   <canvas id="gameCanvas" width="300" height="300"></canvas>
   <script>
     let score = 0;
@@ -42,9 +50,9 @@
     const gameCanvas = document.getElementById('gameCanvas');
     const ctx = gameCanvas.getContext('2d') //绘制上下文环境 API在ctx上
     var GAME_SPEED = 100;
-    var GAME_START = true;
+    var GAME_START = false;
     var scoreNode = document.getElementById('score')
-    
+
     // 游戏主线程
     function main() {
       setTimeout(() => {
@@ -53,7 +61,9 @@
         drawSnake();
         drawFood();
         changeClass();
-        main();
+        if (GAME_START) {
+          main();
+        }
       }, GAME_SPEED);
     }
 
@@ -130,19 +140,31 @@
     }
 
     // 变换难度
-    function changeClass(){
+    function changeClass() {
       GAME_SPEED = Math.floor(100 / (100 + score) * 100);
+    }
+    function gameStart() {
+      if (!GAME_START) {
+        GAME_START = true;
+        document.getElementById('gameP_s').innerHTML = '游戏进行中！'
+        main();
+      } else {
+        GAME_START = false;
+        document.getElementById('gameP_s').innerHTML = '游戏已经暂停！'
+      }
     }
     function changeDirection(event) {
       const LEFT_KEY = 37;
       const RIGHT_KEY = 39;
       const UP_KEY = 38;
       const DOWN_KEY = 40;
+      const GAME_P = 32;
       const keyPressed = event.keyCode;
       const goingRight = dx === 10;
       const goingLeft = dx === -10;
       const goingUp = dy === -10;
       const goingDown = dy === 10;
+
       switch (keyPressed) {
         case LEFT_KEY: {
           if (!goingRight) {
@@ -171,6 +193,9 @@
             dy = 10;
           }
           break;
+        }
+        case GAME_P: {
+          gameStart();
         }
         default: break;
       }
