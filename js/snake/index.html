@@ -26,7 +26,8 @@
   <div id="score">0</div>
   <canvas id="gameCanvas" width="300" height="300"></canvas>
   <script>
-    let dx = 0, dy = 0;
+    let score = 0;
+    let dx = 10, dy = 0;
     let snake = [
       { x: 150, y: 150 },
       { x: 140, y: 150 },
@@ -34,15 +35,24 @@
       { x: 120, y: 150 },
       { x: 110, y: 150 }
     ];
+    let food = { x: 0, y: 0 };
+    food.x = Math.floor(Math.random() * 30) * 10;
+    food.y = Math.floor(Math.random() * 30) * 10;
+
     const gameCanvas = document.getElementById('gameCanvas');
     const ctx = gameCanvas.getContext('2d') //绘制上下文环境 API在ctx上
-    const GAME_SPEED = 100;
+    var GAME_SPEED = 100;
     var GAME_START = true;
+    var scoreNode = document.getElementById('score')
+    
+    // 游戏主线程
     function main() {
       setTimeout(() => {
         clearCanvas();
         moveSnake();
         drawSnake();
+        drawFood();
+        changeClass();
         main();
       }, GAME_SPEED);
     }
@@ -73,18 +83,56 @@
       if (GAME_START) {
         const head = { x: snake[0].x + dx, y: snake[0].y + dy };
         snake.unshift(head);
-        snake.pop();
-        gameOver();
+        eatFood(head);
+        gameOver(head);
       }
     }
 
-    function gameOver(){
-      if(snake[0].x<0||snake[0].x>290||snake[0].y<0||snake[0].y>290){
+    function gameOver(head) {
+      if (head.x < 0 || head.x > 290 || head.y < 0 || head.y > 290) {
+        GAME_START = false;
+        if (confirm("Game Over! 按下确认重新游玩")) {
+          window.location.reload()
+        }
+      }
+      for (let i = snake.length; i-- && i != 0;) {
+        if (head.x == snake[i].x && head.y == snake[i].y) {
           GAME_START = false;
-          alert("Game Over!")
+          if (confirm("Game Over! 按下确认重新游玩")) {
+            window.location.reload()
+          }
+          break;
+        }
       }
     }
 
+    // 绘制食物
+    function eatFood(head) {
+      if (head.x == food.x && head.y == food.y) {
+        score++;
+        scoreNode.innerHTML = score
+        food.x = Math.floor(Math.random() * 30) * 10;
+        food.y = Math.floor(Math.random() * 30) * 10;
+      } else {
+        snake.pop();
+      }
+    }
+    function drawFood() {
+      const smollSnake = gameCanvas.getContext('2d');
+      smollSnake.fillStyle = 'black';
+      drawFoodWhere(food);
+    }
+    function drawFoodWhere(food) {
+      ctx.fillStyle = 'red';
+      ctx.strokeStyle = 'red';
+      ctx.fillRect(food.x, food.y, 10, 10);
+      ctx.strokeRect(food.x, food.y, 10, 10);
+    }
+
+    // 变换难度
+    function changeClass(){
+      GAME_SPEED = Math.floor(100 / (100 + score) * 100);
+    }
     function changeDirection(event) {
       const LEFT_KEY = 37;
       const RIGHT_KEY = 39;
