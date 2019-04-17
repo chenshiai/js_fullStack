@@ -49,8 +49,9 @@
 
     const gameCanvas = document.getElementById('gameCanvas');
     const ctx = gameCanvas.getContext('2d') //绘制上下文环境 API在ctx上
-    var GAME_SPEED = 100;
-    var GAME_START = false;
+
+    var GAME_SPEED = 100; //初始游戏速度
+    var GAME_START = false; // 游戏主线程开关
     var scoreNode = document.getElementById('score')
 
     // 游戏主线程
@@ -61,12 +62,14 @@
         drawSnake();
         drawFood();
         changeClass();
+        // 根据开关状态来判断是否继续主线程
         if (GAME_START) {
           main();
         }
       }, GAME_SPEED);
     }
 
+    // 清除canvas画布上的所有东西，重置画布
     function clearCanvas() {
       ctx.fillStyle = 'white';
       ctx.strokeStyle = 'black';
@@ -74,13 +77,14 @@
       ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.width);
     }
 
-    // 初始绘制蛇
+    // 绘制蛇
     function drawSnake() {
       const smollSnake = gameCanvas.getContext('2d');
       smollSnake.fillStyle = 'black';
       snake.forEach(drawSnakePart);
     }
 
+    // 将取到的数值，绘制在画布上
     function drawSnakePart(part) {
       ctx.fillStyle = 'lightgreen';
       ctx.strokeStyle = 'darkgreen';
@@ -90,21 +94,22 @@
 
     function moveSnake() {
       // canvas 在上一帧的基础上绘制下一帧
-      if (GAME_START) {
-        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-        snake.unshift(head);
-        eatFood(head);
-        gameOver(head);
-      }
+      const head = { x: snake[0].x + dx, y: snake[0].y + dy };// 创建新节点
+      snake.unshift(head); // 将新节点插入到snake的头部，实现向前移动一格的效果
+      eatFood(head); // 判断新节点是否吃到食物
+      gameOver(head); // 判断新节点是否在游戏规则约束内
     }
 
+    // 游戏规则约束
     function gameOver(head) {
+      // 触碰边界判断
       if (head.x < 0 || head.x > 290 || head.y < 0 || head.y > 290) {
         GAME_START = false;
         if (confirm("Game Over! 按下确认重新游玩")) {
           window.location.reload()
         }
       }
+      // 触碰自身判断
       for (let i = snake.length; i-- && i != 0;) {
         if (head.x == snake[i].x && head.y == snake[i].y) {
           GAME_START = false;
@@ -116,17 +121,20 @@
       }
     }
 
-    // 绘制食物
+    // 食物部分
     function eatFood(head) {
+      // 如果新节点数值===食物数值，即吃到食物。无需调用pop()来删除尾部节点
       if (head.x == food.x && head.y == food.y) {
         score++;
         scoreNode.innerHTML = score
         food.x = Math.floor(Math.random() * 30) * 10;
         food.y = Math.floor(Math.random() * 30) * 10;
       } else {
+        // 如果没有吃到食物，则需要调用pop()来删除尾部节点
         snake.pop();
       }
     }
+    //绘制食物
     function drawFood() {
       const smollSnake = gameCanvas.getContext('2d');
       smollSnake.fillStyle = 'black';
@@ -143,6 +151,7 @@
     function changeClass() {
       GAME_SPEED = Math.floor(100 / (100 + score) * 100);
     }
+    // 暂停与开始
     function gameStart() {
       if (!GAME_START) {
         GAME_START = true;
