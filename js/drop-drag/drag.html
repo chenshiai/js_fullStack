@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+  .box{
+    width: 200px;
+    height: 200px;
+    border: 10px solid green;
+  }
+  .box img{
+    width: 100%;
+    height: 100%;
+  }
+  #box2{
+    margin-top: 30px;
+  }
+  </style>
+</head>
+
+<body>
+  <div draggable="true" class="box" id="box1">
+    <p>辣条</p>
+  </div>
+  <a href="#">蜗牛:"拖我!"</a>
+  <div class="box" id="box2" draggable="true">
+    <img src="http://ppsm0t3x8.bkt.clouddn.com/wonniu.jpg" alt="">
+  </div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  // const box1 = document.getElementById('box1');
+  // const box2 = document.getElementById('box2');
+  
+  // box1.addEventListener('dragstart', function(){
+  //   console.log('dragstart')
+  // })
+  // box1.addEventListener('drag', function(){
+  //   console.log('drag')
+  // })
+  // box1.addEventListener('dragend', function(){
+  //   console.log('dragend')
+  // })
+
+
+  // box2.addEventListener('dragenter', function(){
+  //   console.log('dragenter')
+  // })
+  // box2.addEventListener('dragover', function(event){
+  //   event.preventDefault();
+  //   console.log('dragover')
+  // })
+  // box2.addEventListener('dragleave', function(){
+  //   console.log('dragleave')
+  // })
+  // box2.addEventListener('drop', function(){
+  //   console.log('drop')
+  // })
+  const boxs = document.querySelectorAll('.box');
+  let srcbox = null;
+  for (let i = 0; i<boxs.length; i++){
+    let box = boxs[i];
+    box.addEventListener('drop', function(evt){
+      const dataTransfer = evt.dataTransfer.getData('text/html');
+      srcbox.innerHTML = this.innerHTML;
+      this.innerHTML = dataTransfer;
+    });
+    box.addEventListener('dragover', function(evt){
+      evt.preventDefault();
+    })
+    box.addEventListener('dragstart', function(evt){
+      evt.dataTransfer.setData('text/html', this.innerHTML);
+      srcbox = this;
+    });
+  }
+</script>
+
+</html>

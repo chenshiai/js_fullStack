@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  html, body{
+    width: 100%;
+    height: 100%;
+  }
+  #app{
+    width: 100%;
+    max-width: 980px;
+    margin: auto;
+    height: 100%;
+    position: relative;
+  }
+  .list{
+    padding: 10px;
+    height: 20px;
+    border-bottom: 10px solid #dddddd;
+    font-family: "微软雅黑";
+    font-size: 20px;
+  }
+  #recycle{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    background-color: #ccc;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="main">
+      <div class="list" draggable="true">aaaaaaaaaa</div>
+      <div class="list" draggable="true">bbbbbbbbbb</div>
+      <div class="list" draggable="true">cccccccccc</div>
+      <div class="list" draggable="true">dddddddddd</div>
+      <div class="list" draggable="true">eeeeeeeeee</div>
+      <div class="list" draggable="true">ffffffffff</div>
+      <div class="list" draggable="true">gggggggggg</div>
+    </div>
+    <div id="recycle">
+      回收站
+    </div>
+  </div>
+</body>
+<script>
+const lists = document.querySelectorAll('.list');
+const main = document.querySelector('.main');
+const recycle = document.getElementById('recycle');
+let srcList = null;
+for(let th of lists){
+  th.addEventListener('dragstart', function(){
+    this.style.backgroundColor = '#f8f8f8';
+    srcList = this;
+    console.log(srcList.innerHTML)
+  });
+  th.addEventListener('dragend', function(){
+    this.style.backgroundColor = '#fff';
+  })
+  th.addEventListener('dragenter', function(){
+      this.parentNode.insertBefore(srcList, this.nextSibling);
+  })
+}
+document.addEventListener('dragover', function(e){
+  e.preventDefault();
+})
+recycle.addEventListener('drop', function(){
+  main.removeChild(srcList);
+})
+</script>
+</html>
