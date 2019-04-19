@@ -42,7 +42,7 @@ li {
 
 img {
   border: 0;
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 table {
@@ -53,21 +53,26 @@ table {
 p {
   word-wrap: break-word
 }
+
 /* 常规居中用 */
+
 .centerBox {
   width: 80%;
   max-width: 1080px;
   margin: 0 auto;
 }
+
 /* 圣杯布局用 */
+
 .container {
   padding: 0 10%;
 }
+
 header, footer, .masks, .section-left {
   position: fixed;
 }
 
-header, footer ,.section-left  {
+header, footer, .section-left {
   z-index: 99;
   display: block;
   width: 100%;
@@ -77,9 +82,12 @@ header, footer ,.section-left  {
   -moz-box-shadow: 0px 0px 8px 1px #ddd;
   box-shadow: 0px 0px 8px 1px #ddd;
 }
+
 /* 获取数据前的空白内容填充 */
+
 /* 空白-句 */
-.null-text{
+
+.null-text {
   padding-bottom: 10px;
   margin: 5px 0;
   width: 100%;
@@ -87,8 +95,10 @@ header, footer ,.section-left  {
   background-color: rgb(212, 212, 212);
   border-radius: 2px;
 }
+
 /* 空白-段 */
-.null-area{
+
+.null-area {
   position: absolute;
   top: 0;
   left: 0;
@@ -97,6 +107,7 @@ header, footer ,.section-left  {
   background-color: rgb(248, 248, 248);
   border-radius: 5px;
 }
+
 /* 头部样式 */
 
 header {
@@ -176,7 +187,7 @@ header span {
 
 .swiper-slide {
   overflow: hidden;
-  border-radius: 30px/10px;
+  border-radius: 3px;
   border: 2px solid #ffc343;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
   /* transition: 0.3s; */
@@ -212,14 +223,17 @@ header span {
 }
 
 /* 人物搜索样式 */
+
 .select {
   z-index: 10;
   margin-bottom: 20px;
 }
-.section-select{
+
+.section-select {
   width: 100%;
   max-width: 1080px;
 }
+
 .select-list, .item-lists, .item-lists-roles {
   flex-flow: row wrap;
   display: flex;
@@ -261,12 +275,12 @@ header span {
   font-weight: bold;
 }
 
-.item-list__detail .item-list__span {
+.item-list__detail .item-list__span{
   cursor: pointer;
   position: relative;
 }
 
-.item-list__detail .item-list__span:after {
+.item-list__detail .item-list__span:after{
   content: "";
   display: inline-block;
   width: 0px;
@@ -281,7 +295,7 @@ header span {
   transition: all 0.3s;
 }
 
-.item-list__detail:hover .item-list__span:after {
+.item-list__detail:hover .item-list__span:after{
   width: 100%;
 }
 
@@ -321,7 +335,8 @@ header span {
 }
 
 /* svgLoad + masks */
-.masks{
+
+.masks {
   overflow: hidden;
   top: 0;
   left: 0;
@@ -332,11 +347,13 @@ header span {
   transition: height 0.2s ease-out;
   background-color: #ffc343;
 }
-.mask-svg{
+
+.mask-svg {
   position: relative;
   width: 100%;
   height: 100vh;
 }
+
 .mask-svg .lds-message {
   position: absolute;
   top: calc(50% - 40px);
@@ -365,18 +382,22 @@ header span {
 .Notice {
   font-size: 1.2em;
 }
-.Notice:hover .Notice-title{
+
+.Notice:hover .Notice-title {
   background-color: #ffc343;
   color: #fff;
 }
-.Notice .Notice-text{
+
+.Notice .Notice-text {
   padding: 20px;
 }
+
 .Notice .Notice-text .Notice-text__greet {
   position: relative;
   height: 120px;
 }
-.Notice-text__greet .greet-time{
+
+.Notice-text__greet .greet-time {
   position: absolute;
   bottom: 0px;
   right: 0;
@@ -404,6 +425,114 @@ header span {
   100% {
     height: auto;
   }
+}
+
+/* 角色卡 */
+
+.rolecard-list img {
+  width: 100%;
+}
+
+.rolecard-list__item {
+  display: flex;
+  background-color: #fff;
+  height: 100px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 0;
+  line-height: 0;
+  -webkit-box-shadow: 0px 0px 8px 1px #ddd;
+  -moz-box-shadow: 0px 0px 8px 1px #ddd;
+  box-shadow: 0px 0px 8px 1px #ddd;
+}
+
+.item-cutin {
+  width: 90px;
+}
+
+.item-details {
+  line-height: 1;
+  overflow: hidden;
+  display: inline-block;
+  width: 20%;
+  margin-left: 20px;
+}
+
+.item-details span {
+  display: block;
+  white-space: nowrap;
+  line-height: 20px;
+  color: #2d374b;
+  font-weight: bold;
+}
+
+.item-detail__rarity {
+  width: 100%;
+}
+
+.item-detail__rarity img {
+  width: 20px;
+}
+
+.item-detail__title {
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.item-detail__name {
+  font-size: 14px;
+}
+
+.rolecard-list__item .item-cell {
+  flex: 1;
+  font-size: 16px;
+  display: flex;
+}
+
+.item-cell div {
+  flex: 1;
+  line-height: 100px;
+  text-align: center;
+}
+
+.item-ele img, .item-wea img {
+  max-width: 50px;
+}
+.item-num{
+  font-size: 1.4em;
+  position: relative;
+}
+.item-num:after{
+  content: "";
+  display: inline-block;
+  width: 0px;
+  height: 3px;
+  background: #ffc343;
+  position: absolute;
+  top: calc(50% + 0.7em);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.item-num:hover:after{
+  width: 100%;
+}
+.hpA{
+  color:#aae67e;
+}
+.mpA{
+  color:#6edce2;
+}
+.atkA{
+  color:#fb7979;
+}
+.defA{
+  color:#a873d5;
+}
+.criA{
+  color:#dca35d;
 }
 
 /* 底部样式 */

@@ -1,4 +1,4 @@
-var saomdIndex = {
+var SaomdIndex = {
   /**
    * 滚动条到一定距离，元素与顶端固定距离方法，单个元素有效
    * @param {string} node  需要绑定的目标节点的class或id
@@ -11,7 +11,7 @@ var saomdIndex = {
         if (typeof where == 'number') {
           window.addEventListener('scroll', function () {
             var theNode = document.querySelector(node);
-            if (saomdIndex.getScrollTop() >= scrollTop) {
+            if (SaomdIndex.getScrollTop() >= scrollTop) {
               theNode.style.position = 'fixed';
               theNode.style.top = where + 'px';
             } else {
@@ -43,6 +43,40 @@ var saomdIndex = {
       scrollTop = document.body.scrollTop;
     }
     return scrollTop;
+  },
+  /**
+   * ajax请求方法
+   * @param {string} Method get还是post还是其他 
+   * @param {string} url 请求的地址 
+   * @param {boolean} Aysnc 是否同步
+   * @param {function} callback 成功回调函数
+   * @param {function} errorback 失败回调函数
+   */
+  "ajaxRequest": function (Method, url, Aysnc, callback = null, errorback = null) {
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else {
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (!callback) {
+      console.log('真的不要回调函数请求吗？');
+      return;
+    }
+    xhr.open(Method, url, Aysnc);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          var responseText = xhr.responseText;//返回结果
+          var obj = JSON.parse(responseText);
+          callback(obj);
+        } else if (errorback) {
+          errorback();
+        }
+      }
+    }
   }
 }
 
@@ -69,7 +103,7 @@ var Mask = {
 }
 
 /**
- * 用于index.html的初始化方法
+ * 用于index.html的方法
  */
 function IndexInit() {
   // 事件代理，点击切换内容
@@ -94,11 +128,49 @@ function IndexInit() {
   // 点击检索事件
   $('#startFind').click(function () {
     Mask.loadingMask('rgba(0,0,0,0.3)');
-    setTimeout(function(){
-      Mask.loadoverMask('rgba(0,0,0,0.3)');
-    },2000)
+    SaomdIndex.ajaxRequest('post', 'https://www.easy-mock.com/mock/5cb9e565b6aa6813fddead4a/roleCard/roleCard', true, roleCardDate);
   })
 
+  // 回调函数
+  function roleCardDate(response) {
+    console.log(response.data);
+    response.data.forEach(data => {
+      inputRoleCard(data)
+    });
+    setTimeout(function () {
+      Mask.loadoverMask('rgba(0,0,0,0.3)');
+    }, 500)
+  }
+
+  // 数据写入
+  function inputRoleCard(data) {
+    var roleCard = document.querySelector('#rolecard').cloneNode(true);
+    roleCard.style.display = 'flex';
+    roleCard.querySelector('.item-cutin').innerHTML =
+      `<img src="./images/${data.cutin}.gif" alt="" />`;
+    for (let i = data.rare + 3; i--;) {
+      var roleRare = document.createElement('img');
+      roleRare.src = './images/icon/icon_rarity_1.png';
+      roleCard.querySelector('.item-detail__rarity').append(roleRare);
+    }
+    if(data.up){
+      var roleRare = document.createElement('img');
+      roleRare.src = './images/icon/icon_rarity_2.png';
+      roleCard.querySelector('.item-detail__rarity').append(roleRare);
+    }
+    roleCard.querySelector('.item-detail__title').innerHTML = data.title;
+    roleCard.querySelector('.item-detail__name').innerHTML = data.name;
+    // 属性，武器未写
+    roleCard.querySelector('.item-ele').innerHTML = `<img src='./images/icon/Element/icon_ele_${data.element}.png'>`;
+    roleCard.querySelector('.item-wea').innerHTML = `<img src='./images/icon/weapon/icon_job_${data.weapon}.png'>`;
+    roleCard.querySelector('.hpA').innerHTML = `HP:${data.hp}`;
+    roleCard.querySelector('.mpA').innerHTML = `MP:${data.mp}`;
+    roleCard.querySelector('.atkA').innerHTML = `ATK:${data.atk}`;
+    roleCard.querySelector('.defA').innerHTML = `DEF:${data.def}`;
+    roleCard.querySelector('.criA').innerHTML = `CRI:${data.cri}`;
+
+    document.querySelector('.rolecard-list').append(roleCard);
+  }
   // swiper 框架使用
   var swiper = new Swiper('.swiper-container', {
     slidesPerView: 3,
@@ -129,7 +201,7 @@ function IndexInit() {
   $('.Notice-text__greet').find('.greet-time')[0].innerHTML = BasicConfig.Notice.greetTime;
 
   // 搜索栏固定
-  saomdIndex.scrollFixed('.section-select', 400, 100);
+  SaomdIndex.scrollFixed('.section-select', 400, 100);
 
   console.log('初始化完成')
 }

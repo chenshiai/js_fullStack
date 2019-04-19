@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "cutin": "kirito_36001",
+    "rare": 3,
+    "title": "黑衣剑士",
+    "name": "桐人",
+    "element": 1,
+    "weapon": 9,
+    "swordSkill": [1, 2],
+    "battleSkill": [1, 2, 3],
+    "skillSolt": [1, 2, 3, 4, 5],
+    "SS3":{
+      "name":"星爆气流斩",
+      "mp":120,
+      "detail":"当我拿出第二把剑的后，没有人能站在我面前！合作伙伴：无属性，损伤增加5%",
+      "sp":[1,2]
+    },
+    "card": 99
+  },
+  {
+    "id": 2,
+    "cutin": "kirito_36001",
+    "rare": 2,
+    "title": "血盟剑士",
+    "name": "桐人",
+    "element": 2,
+    "weapon": 1,
+    "swordSkill": [1, 2],
+    "battleSkill": [1, 2, 3],
+    "skillSolt": [1, 2, 3, 4, 5],
+    "SS3":{
+      "name":"星爆气流斩",
+      "mp":120,
+      "detail":"当我拿出第二把剑的后，没有人能站在我面前！合作伙伴：无属性，损伤增加5%",
+      "sp":[1,2]
+    },
+    "card": 99
+  },
+  {
+    "id": 3,
+    "cutin": "kirito_36001",
+    "rare": 1,
+    "title": "见习剑士",
+    "name": "桐人",
+    "element": 3,
+    "weapon": 1,
+    "swordSkill": [1, 2],
+    "battleSkill": [1, 2, 3],
+    "skillSolt": [1, 2, 3, 4, 5],
+    "SS3":{
+      "name":"星爆气流斩",
+      "mp":120,
+      "detail":"当我拿出第二把剑的后，没有人能站在我面前！合作伙伴：无属性，损伤增加5%",
+      "sp":[1,2]
+    },
+    "card": 99
+  }
+  
+]
