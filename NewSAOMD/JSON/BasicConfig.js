@@ -1,4 +1,8 @@
 var BasicConfig = {
+  "Notice": {
+    "greet": "Hello！大家吼！这里是新的SAOMD人物图鉴首页喔~！",
+    "greetTime": "2019-04-19",
+  },
   "newRoles": [
     {
       "src":"./images/newRoles/017.png"

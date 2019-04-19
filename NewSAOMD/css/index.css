@@ -53,23 +53,50 @@ table {
 p {
   word-wrap: break-word
 }
-
+/* 常规居中用 */
 .centerBox {
   width: 80%;
   max-width: 1080px;
   margin: 0 auto;
-} 
-header, footer {
+}
+/* 圣杯布局用 */
+.container {
+  padding: 0 10%;
+}
+header, footer, .masks, .section-left {
   position: fixed;
+}
+
+header, footer ,.section-left  {
   z-index: 99;
   display: block;
   width: 100%;
+  overflow: hidden;
   background-color: #fff;
   -webkit-box-shadow: 0px 0px 8px 1px #ddd;
   -moz-box-shadow: 0px 0px 8px 1px #ddd;
   box-shadow: 0px 0px 8px 1px #ddd;
 }
-
+/* 获取数据前的空白内容填充 */
+/* 空白-句 */
+.null-text{
+  padding-bottom: 10px;
+  margin: 5px 0;
+  width: 100%;
+  min-width: 70px;
+  background-color: rgb(212, 212, 212);
+  border-radius: 2px;
+}
+/* 空白-段 */
+.null-area{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(248, 248, 248);
+  border-radius: 5px;
+}
 /* 头部样式 */
 
 header {
@@ -85,9 +112,9 @@ header a {
   background-color: #ffc343;
 }
 
-header span, header a, footer span {
+header span, header a, footer span, .Notice-title {
   text-align: center;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   display: block;
 }
 
@@ -105,11 +132,13 @@ header span {
 /* 新角色展示样式 */
 
 .section-seperate {
-  margin-bottom: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  float: left;
 }
 
 .section-title {
-  width: 400px;
+  width: 420px;
   text-align: center;
   margin: 0 auto;
   padding: 10px 0;
@@ -139,17 +168,20 @@ header span {
 .swiper-container {
   width: 90%;
 }
-.swiper-wrapper{
+
+.swiper-wrapper {
   padding: 8px 0 18px 0;
+  min-height: 330px;
 }
+
 .swiper-slide {
-  min-height: 280px;
   overflow: hidden;
   border-radius: 30px/10px;
   border: 2px solid #ffc343;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.3) inset, 0 8px 10px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+  /* transition: 0.3s; */
 }
+
 .swiper-slide::before {
   content: "";
   height: 100%;
@@ -170,8 +202,9 @@ header span {
 .swiper-slide:not(.swiper-slide-active) {
   transform: scale(0.8);
   opacity: 0.6;
-  background-color: #ccc;
-  border-color: #ddd;
+  background-color: none;
+  border: none;
+  box-shadow: none;
 }
 
 .swiper-slide img {
@@ -179,13 +212,14 @@ header span {
 }
 
 /* 人物搜索样式 */
-
 .select {
-  position: sticky;
   z-index: 10;
   margin-bottom: 20px;
 }
-
+.section-select{
+  width: 100%;
+  max-width: 1080px;
+}
 .select-list, .item-lists, .item-lists-roles {
   flex-flow: row wrap;
   display: flex;
@@ -265,7 +299,7 @@ header span {
   position: absolute;
   left: 0;
   top: 0px;
-  height: 3px;
+  height: 4px;
   background: #ffc343;
   width: 100%;
 }
@@ -285,26 +319,93 @@ header span {
   opacity: 1;
   height: 300%;
 }
-/* svgLoad + mask */
-.mask{
-  position: fixed;
+
+/* svgLoad + masks */
+.masks{
   overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffc343;
-  z-index: 998;
   display: block;
-  transition: height 0.2s ease-in-out
+  z-index: 998;
+  transition: height 0.2s ease-out;
+  background-color: #ffc343;
 }
-.lds-message{
-  position: fixed;
+.mask-svg{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.mask-svg .lds-message {
+  position: absolute;
   top: calc(50% - 40px);
   left: calc(50% - 40px);
-  z-index: 9999;
+  z-index: 1000;
   transform: scale(1.4);
 }
+
+/* 左侧公告样式 */
+
+.section-left {
+  width: 100px;
+  height: 39px;
+  top: 80px;
+  transition: all 0.2s linear;
+}
+
+.section-left:hover {
+  width: 330px;
+  animation-name: noticeHeight;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}
+
+.Notice {
+  font-size: 1.2em;
+}
+.Notice:hover .Notice-title{
+  background-color: #ffc343;
+  color: #fff;
+}
+.Notice .Notice-text{
+  padding: 20px;
+}
+.Notice .Notice-text .Notice-text__greet {
+  position: relative;
+  height: 120px;
+}
+.Notice-text__greet .greet-time{
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+}
+
+@-webkit-keyframes noticeHeight {
+  0% {
+    height: 39px;
+  }
+  99% {
+    height: 160px;
+  }
+  100% {
+    height: auto;
+  }
+}
+
+@keyframes noticeHeight {
+  0% {
+    height: 39px;
+  }
+  99% {
+    height: 160px;
+  }
+  100% {
+    height: auto;
+  }
+}
+
 /* 底部样式 */
 
 footer {
