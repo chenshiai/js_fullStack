@@ -61,7 +61,6 @@ p {
   max-width: 1080px;
   margin: 0 auto;
 }
-
 /* 圣杯布局用 */
 
 .container {
@@ -72,7 +71,7 @@ header, footer, .masks, .section-left {
   position: fixed;
 }
 
-header, footer, .section-left {
+header, footer, .section-left ,.loadmore{
   z-index: 99;
   display: block;
   width: 100%;
@@ -145,7 +144,6 @@ header span {
 .section-seperate {
   width: 100%;
   margin-bottom: 20px;
-  float: left;
 }
 
 .section-title {
@@ -466,7 +464,9 @@ header span {
 }
 
 /* 角色卡 */
-
+.rolecard{
+  margin-bottom: 50px;
+}
 .rolecard-list img {
   width: 100%;
 }
@@ -632,7 +632,19 @@ header span {
   width: 100%;
   text-align: center;
 }
-
+.loadmore{
+  margin: 0 auto;
+  width: 170px;
+  font-size: 1.4em;
+  line-height: 3em;
+  text-align: center;
+  display: none;
+  font-weight: bold;
+}
+.loadmore:hover{
+  color: #fff;
+  background-color: #ffc43f;
+}
 footer {
   bottom: 0;
 }
