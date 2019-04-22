@@ -28,8 +28,7 @@ a {
 }
 
 a:hover {
-  color: #cd0200;
-  text-decoration: underline
+  text-decoration: none;
 }
 
 em {
@@ -193,7 +192,7 @@ header span {
   /* transition: 0.3s; */
 }
 
-.swiper-slide::before {
+.swiper-slide-active::before {
   content: "";
   height: 100%;
   width: 100px;
@@ -205,7 +204,7 @@ header span {
   z-index: 2;
 }
 
-.swiper-slide:hover::before {
+.swiper-slide-active:hover::before {
   transition: left 1s ease-in-out;
   left: 130%;
 }
@@ -221,7 +220,26 @@ header span {
 .swiper-slide img {
   width: 100%;
 }
+.swiper-button-prev,
+.swiper-button-next{
+  width: 35px;
+  height: 36px;
+  background-position: 0 0px;
+  background-size: 35px 108px;
+  background-image: url('../images/icon/icon_arrow.png');
+}
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover{
+  background-position: 0 -72px;
+}
+.swiper-button-prev:active,
+.swiper-button-next:active{
+  background-position: 0 -36px;
+}
+.swiper-button-prev{
+  transform: rotateY(180deg);
+}
 /* 人物搜索样式 */
 
 .select {
@@ -230,8 +248,10 @@ header span {
 }
 
 .section-select {
+  position: relative;
   width: 100%;
   max-width: 1080px;
+  z-index: 70;
 }
 
 .select-list, .item-lists, .item-lists-roles {
@@ -445,7 +465,29 @@ header span {
   -moz-box-shadow: 0px 0px 8px 1px #ddd;
   box-shadow: 0px 0px 8px 1px #ddd;
 }
-
+.rolecard-list__item:hover{
+  animation: fear 0.1s infinite linear;
+  transform-origin: 35%;
+  cursor: pointer;
+  /* background: #ffc343; */
+}
+@keyframes fear{
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(-0.3deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  75%{
+    transform: rotate(0.3deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
 .item-cutin {
   width: 90px;
 }

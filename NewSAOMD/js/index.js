@@ -15,7 +15,8 @@ var SaomdIndex = {
               theNode.style.position = 'fixed';
               theNode.style.top = where + 'px';
             } else {
-              theNode.style.position = 'inherit';
+              theNode.style.position = 'relative';
+              theNode.style.top = '0px';
             }
           });
           return;
@@ -60,7 +61,7 @@ var SaomdIndex = {
       xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
     if (!callback) {
-      console.log('真的不要回调函数请求吗？');
+      console.log('不要回调函数是不行的哦!');
       return;
     }
     xhr.open(Method, url, Aysnc);
@@ -128,6 +129,7 @@ function IndexInit() {
   // 点击检索事件
   $('#startFind').click(function () {
     Mask.loadingMask('rgba(0,0,0,0.3)');
+    document.querySelector('.rolecard-list').innerHTML = '';
     SaomdIndex.ajaxRequest('post', 'https://www.easy-mock.com/mock/5cb9e565b6aa6813fddead4a/roleCard/roleCard', true, roleCardDate);
   })
 
@@ -146,6 +148,7 @@ function IndexInit() {
   function inputRoleCard(data) {
     var roleCard = document.querySelector('#rolecard').cloneNode(true);
     roleCard.style.display = 'flex';
+    roleCard.id = 'newcard';
     roleCard.querySelector('.item-cutin').innerHTML =
       `<img src="./images/${data.cutin}.gif" alt="" />`;
     for (let i = data.rare + 3; i--;) {
@@ -154,9 +157,9 @@ function IndexInit() {
       roleCard.querySelector('.item-detail__rarity').append(roleRare);
     }
     if(data.up){
-      var roleRare = document.createElement('img');
-      roleRare.src = './images/icon/icon_rarity_2.png';
-      roleCard.querySelector('.item-detail__rarity').append(roleRare);
+      var roleRare1 = document.createElement('img');
+      roleRare1.src = './images/icon/icon_rarity_2.png';
+      roleCard.querySelector('.item-detail__rarity').append(roleRare1);
     }
     roleCard.querySelector('.item-detail__title').innerHTML = data.title;
     roleCard.querySelector('.item-detail__name').innerHTML = data.name;
