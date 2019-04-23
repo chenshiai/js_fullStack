@@ -1,5 +1,7 @@
 /* 初始化CSS */
-
+html{
+  font-size: 12px;
+}
 body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select {
   margin: 0;
   padding: 0;
@@ -12,7 +14,6 @@ body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend,
 
 body {
   font-family: 'sao_font', Arial, "微软雅黑";
-  font-size: 12px;
   background: rgb(248, 248, 248);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -20,6 +21,8 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-appearance: none; 
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
 a {
@@ -71,7 +74,7 @@ header, footer, .masks, .section-left {
   position: fixed;
 }
 
-header, footer, .section-left ,.loadmore{
+header, footer, .section-left ,.loadmore, .select-open{
   z-index: 99;
   display: block;
   width: 100%;
@@ -144,6 +147,7 @@ header span {
 .section-seperate {
   width: 100%;
   margin-bottom: 20px;
+  font-size: 1.2em;
 }
 
 .section-title {
@@ -161,7 +165,7 @@ header span {
   width: 100%;
   background-color: #999;
   position: relative;
-  top: 7px;
+  top: 8px;
 }
 
 .section-title span {
@@ -169,7 +173,6 @@ header span {
   background: rgb(248, 248, 248);
   padding: 0 10px;
   position: relative;
-  font-size: 13px;
   font-weight: 500;
   color: #ffc343;
 }
@@ -187,6 +190,7 @@ header span {
   overflow: hidden;
   border-radius: 3px;
   border: 2px solid #ffc343;
+  box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
   margin-bottom: 8px;
   /* transition: 0.3s; */
@@ -199,16 +203,20 @@ header span {
   transform: skewX(-25deg) translateZ(0);
   background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 50%, hsla(0, 0%, 100%, 0));
   position: absolute;
-  left: -50%;
+  left: -100%;
   top: 0;
   z-index: 2;
+  animation: light 1s ease-in-out;
 }
 
-.swiper-slide-active:hover::before {
-  transition: left 1s ease-in-out;
-  left: 130%;
+@keyframes light{
+  0%{
+    left: -50%;
+  }
+  100%{
+    left: 130%;
+  }
 }
-
 .swiper-slide:not(.swiper-slide-active) {
   transform: scale(0.8);
   opacity: 0.6;
@@ -247,8 +255,10 @@ header span {
   z-index: 10;
   /* margin-bottom: 20px; */
 }
-
-.select-list, .section-left, .rolecard-list__item {
+.select-open{
+  display: none;
+}
+.select-list, .section-left, .rolecard-list__item,.select-open {
   border-radius: 2px;
 }
 
@@ -256,7 +266,7 @@ header span {
   position: relative;
   width: 100%;
   max-width: 1080px;
-  z-index: 70;
+  z-index: 9;
 }
 
 .select-list, .item-lists, .item-lists-roles {
@@ -294,7 +304,6 @@ header span {
 
 .select-list__item .item-title, .item-list__detail .item-list__span {
   display: block;
-  font-size: 1.33em;
   line-height: 2.5em;
   padding: 7px 20px;
   font-weight: bold;
@@ -303,6 +312,7 @@ header span {
 .item-list__detail .item-list__span {
   cursor: pointer;
   position: relative;
+  z-index: 15;
 }
 
 .item-list__detail .item-list__span:after {
@@ -366,7 +376,7 @@ header span {
   width: 100%;
   top: -45px;
   z-index: 0;
-  height: 80px;
+  height: 100px;
   background-color: rgb(248, 248, 248);
 }
 
@@ -476,7 +486,7 @@ header span {
   background-color: #fff;
   height: 100px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
   font-size: 0;
   line-height: 0;
   -webkit-box-shadow: 0px 0px 8px 1px #ddd;
@@ -629,6 +639,7 @@ header span {
   position: absolute;
   color: #ffc343;
   font-weight: bold;
+  left: 0;
   width: 100%;
   text-align: center;
 }
@@ -641,7 +652,7 @@ header span {
   display: none;
   font-weight: bold;
 }
-.loadmore:hover{
+.loadmore:active{
   color: #fff;
   background-color: #ffc43f;
 }
