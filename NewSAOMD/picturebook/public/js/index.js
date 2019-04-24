@@ -6,20 +6,30 @@ var SaomdIndex = {
    * @param {function} callback  回调函数
    */
   "scroll": function (node, callback = null, scrollTop) {
+    var scrollEvent = SaomdIndex.debounce(callback, 200);
     if (typeof node == 'string') {
       if (typeof scrollTop == 'number') {
         window.addEventListener('scroll', function () {
           var theNode = document.querySelector(node);
           if (Scroll.getScrollTop() >= scrollTop && callback) {
-            callback(theNode, true);
+            scrollEvent(theNode, true)
           } else {
-            callback(theNode, false);
+            scrollEvent(theNode, false);
           }
         });
         return;
       }
     }
     throw new Error("Index 的方法 scrollFixed(node, scrollTop, where) 参数类型错误！");
+  },
+  "debounce": function (callback, delay) {
+    return function (node, bool) {
+      clearTimeout(callback.id);
+      callback.id = setTimeout(() => {
+        callback(node, bool);
+        console.log('sss');
+      }, delay);
+    }
   },
   /**
    * ajax请求方法
@@ -77,7 +87,7 @@ var SaomdIndex = {
       for (var i = num; i-- && this.data.length > 0;) {
         callback(this.data.shift());
       }
-      return this.data.length == 0;
+      return this.data.length === 0;
     }
   },
   /** 
@@ -88,24 +98,24 @@ var SaomdIndex = {
    * @param {function} callback 成功后回调的函数
    */
   "seriesLoadScripts": function (scripts, callback) {
-    if (typeof (scripts) != "object") var scripts = [scripts];
+    if (typeof scripts != 'object') var scripts = [scripts];
     var HEAD = document.getElementsByTagName("head").item(0) || document.documentElement;
     var s = new Array(), last = scripts.length - 1;
     var recursiveLoad = function (i) { //递归
       s[i] = document.createElement("script");
       s[i].setAttribute("type", "text/javascript");
+      s[i].setAttribute("src", scripts[i]);
       s[i].onload = s[i].onreadystatechange = function () { //Attach handlers for all browsers
-        if (!/*@cc_on!@*/0 || this.readyState == "loaded" || this.readyState == "complete") {
+        if (!0 || this.readyState == "loaded" || this.readyState == "complete") {
           this.onload = this.onreadystatechange = null;
           this.parentNode.removeChild(this);
-          if (i != last){
+          if (i != last) {
             recursiveLoad(i + 1);
-          } else if (typeof (callback) == "function"){
+          } else if (typeof (callback) == "function") {
             callback();
           }
         }
       }
-      s[i].setAttribute("src", scripts[i]);
       HEAD.appendChild(s[i]);
     };
     recursiveLoad(0);
@@ -118,7 +128,7 @@ var SaomdIndex = {
    * @param {function} callback 成功后回调的函数
    */
   "parallelLoadScripts": function (scripts, callback) {
-    if (typeof (scripts) != "object") var scripts = [scripts];
+    if (typeof scripts != 'object') var scripts = [scripts];
     var HEAD = document.getElementsByTagName("head").item(0) || document.documentElement, s = new Array(), loaded = 0;
     for (var i = 0; i < scripts.length; i++) {
       s[i] = document.createElement("script");
@@ -149,11 +159,20 @@ var Scroll = {
     //取窗口可视范围的高度
     var clientHeight = 0;
     if (document.body.clientHeight && document.documentElement.clientHeight) {
-      var clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
+      clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
     } else {
-      var clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
+      clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
     }
     return clientHeight;
+  },
+  "getClientWidth": function () {
+    var clienWidth = 0;
+    if (document.body.clientWidth && document.documentElement.clientWidth) {
+      clienWidth = (document.body.clientWidth < document.documentElement.clientWidth) ? document.body.clientWidth : document.documentElement.clientWidth;
+    } else {
+      clienWidth = (document.body.clientWidth > document.documentElement.clientWidth) ? document.body.clientWidth : document.documentElement.clientWidth;
+    }
+    return clienWidth;
   },
   "getScrollTop": function () {
     //取窗口滚动条高度
@@ -226,12 +245,19 @@ function IndexInit() {
     item.onclick = function (ev) {
       var ev = ev || window.event;
       var target = ev.target || ev.srcElement;
-      var childSpan = this.children[0];
-      childSpan.innerHTML = target.innerHTML;
-      childSpan.setAttribute('val', target.getAttribute('val'));
+      if (target.getAttribute('class') === "item-list__span") {
+        var childSpan = this.children[0];
+        childSpan.innerHTML = target.innerHTML;
+        childSpan.setAttribute('val', target.getAttribute('val'));
+      }
     }
   }
+  /*function handler(event) {
+    console.log(event.type); // log event type
+  }
+  document.addEventListener("mousewheel", handler, { passive: true });*/
 
+  //清空选项
   $('#clearSelect').click(function () {
     var itemTitle = $('.item-title');
     var selectInit = ['选择属性', '选择武器', '选择性别', '选择星级', '选择角色'];
@@ -240,7 +266,6 @@ function IndexInit() {
       itemTitle[i].setAttribute('val', '');
     }
   });
-
 
   // 点击检索事件
   $('#startFind').click(function () {
@@ -261,10 +286,13 @@ function IndexInit() {
     var lazyload = new SaomdIndex.tagLazyload(response);
     loadmore[0].style.display = "block";
     loadmore[0].onclick = null;
-    lazyload.lazyload(10, inputRoleCard);
+    if (lazyload.lazyload(10, inputRoleCard)) {
+      loadmore[0].innerHTML = "没有更多了！";
+      loadmore[0].onclick = null;
+    }
     loadmore[0].onclick = function () {
       if (lazyload.lazyload(10, inputRoleCard)) {
-        loadmore[0].innerHTML("没有更多了！");
+        loadmore[0].innerHTML = "没有更多了！";
         loadmore[0].onclick = null;
       }
     }
@@ -273,7 +301,7 @@ function IndexInit() {
     }, 500);
   }
   function requestError() {
-    alert("哎呀，出错啦！找负责人反馈一下吧~~~");
+    alert("哎呀，找不到呢~~~");
     setTimeout(function () {
       Mask.loadoverMask('rgba(0,0,0,0.3)');
     }, 500);
@@ -312,9 +340,14 @@ function IndexInit() {
     document.querySelector('.rolecard-list').append(a);
   }
   // 请求 swiper 框架使用
-  SaomdIndex.seriesLoadScripts("https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js", function () {
+  var scripts = ["https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js", "./JSON/BasicConfig.js"];
+  SaomdIndex.seriesLoadScripts(scripts, function () {
+    var slidesPerView = 3;
+    if (Scroll.getClientWidth() < 770) {
+      slidesPerView = 1;
+    }
     var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
+      slidesPerView: slidesPerView,
       spaceBetween: 10,
       centeredSlides: true,
       autoplay: {
@@ -338,15 +371,25 @@ function IndexInit() {
     });
     $('.Notice-text__greet').find('.greet-content')[0].innerHTML = BasicConfig.Notice.greet;
     $('.Notice-text__greet').find('.greet-time')[0].innerHTML = BasicConfig.Notice.greetTime;
-  })
-
+  });
   // 搜索栏固定
   SaomdIndex.scroll('.section-select', function (theNode, toggle) {
+    var selectList = document.getElementsByClassName('select-list')[0];
     if (toggle) {
       theNode.style.position = 'fixed';
-      theNode.style.top = 90 + 'px';
+      if (Scroll.getClientWidth() < 770) {
+        theNode.style.top = 60 + 'px';
+        selectList.classList.remove('M_up');
+        selectList.classList.add('M_down');
+      } else {
+        theNode.style.top = 90 + 'px';
+      }
     } else {
       theNode.style.position = 'relative';
+      if (Scroll.getClientWidth() < 770) {
+        selectList.classList.add('M_up');
+        selectList.classList.remove('M_down');
+      }
       theNode.style.top = '0px';
     }
   }, 400);
@@ -358,6 +401,19 @@ function IndexInit() {
       theNode.style.display = 'none';
     }
   }, 600);
+  //点击展开
+  var swit = 1;
+  $('.select-open').click(function () {
+    if (swit === 1) {
+      $('.select-list').css('height', '280px');
+      $('.select-open-lines').toggleClass('close');
+      swit = 0;
+    } else {
+      $('.select-list').css('height', '0px');
+      $('.select-open-lines').toggleClass('close');
+      swit = 1;
+    }
+  })
 
   // 回滚顶部
   $('.goTop').click(Scroll.ToTop);
@@ -370,3 +426,7 @@ function IndexInit() {
   console.log('初始化完成')
 }
 
+function a(s) {
+  var d = s.slice(0);
+  console.log(d);
+}
