@@ -2,6 +2,11 @@
   .centerBox {
     width: 100%;
   }
+  .mainPage{
+    position: relative;
+    left: 0px;
+    transition: all 0.2s linear;
+  }
   /*头部样式*/
   header a {
     float: none;
@@ -16,6 +21,29 @@
   .section-title {
     width: 80%;
   }
+  /*公告样式修改*/
+  .Phone-Notice{
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: -230px;
+  }
+  .Phone-Notice:hover {
+    width: 200px;
+    animation:none;
+  }
+  .Notice-title{
+    display: none;
+  }
+  #NoticeOpen{
+    max-width: 40px;
+    position: fixed;
+    top: 6px;
+    z-index: 100;
+  }
+  .Notice-text{
+    margin-top: 52px;
+  }
   /*角色选择样式*/
   .select {
     padding: 8px 0;
@@ -25,7 +53,6 @@
     display: block;
   }
   .select-open {
-    margin: 0 auto;
     text-align: center;
     line-height: 40px;
     font-weight: bold;
@@ -66,9 +93,11 @@
   }
   .M_up{
     bottom: 45px;
+    box-shadow: 0px -8px 8px -8px #dddddd
   }
   .M_down{
     top: 40px;
+    box-shadow: 0px 8px 8px -8px #dddddd
   }
   .select-list__item {
     position: relative;
@@ -77,6 +106,7 @@
     line-height: 36px;
     padding: 2px;
   }
+  
   .item-lists {
     top: 0px;
     box-shadow: none;

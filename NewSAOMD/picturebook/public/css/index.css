@@ -1,7 +1,9 @@
 /* 初始化CSS */
-html{
+
+html {
   font-size: 12px;
 }
+
 body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select {
   margin: 0;
   padding: 0;
@@ -11,9 +13,13 @@ body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend,
   font-family: 'sao_font';
   src: url('../font/sao.woff2');
 }
-
+@font-face {
+  font-family: 'sao_icon';
+  src: url('../font/elementicon.woff');
+}
 body {
-  font-family: 'sao_font', Arial, "微软雅黑";
+  overflow-x: hidden;
+  font-family: 'sao_font','sao_icon', Arial, "微软雅黑";
   background: rgb(248, 248, 248);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -21,18 +27,13 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-appearance: none; 
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 a {
-  color: #2d374b;
-  text-decoration: none
-}
-
-a:hover {
-  /* color: #cd0200;
-  text-decoration: underline */
+  color: #dd3333;
+  text-decoration: none;
 }
 
 em {
@@ -64,6 +65,7 @@ p {
   max-width: 1080px;
   margin: 0 auto;
 }
+
 /* 圣杯布局用 */
 
 .container {
@@ -74,7 +76,7 @@ header, footer, .masks, .section-left {
   position: fixed;
 }
 
-header, footer, .section-left ,.loadmore, .select-open{
+header, footer, .section-left, .loadmore, .select-open {
   z-index: 99;
   display: block;
   width: 100%;
@@ -84,7 +86,9 @@ header, footer, .section-left ,.loadmore, .select-open{
   -moz-box-shadow: 0px 0px 8px 1px #ddd;
   box-shadow: 0px 0px 8px 1px #ddd;
 }
-
+.boxShadow-no{
+  box-shadow: none;
+}
 /* 获取数据前的空白内容填充 */
 
 /* 空白-句 */
@@ -116,6 +120,7 @@ header {
   top: 0;
   line-height: 32px;
   font-size: 1.66em;
+  transition: all 0.3 linear;
 }
 
 header a {
@@ -209,14 +214,15 @@ header span {
   animation: light 1s ease-in-out;
 }
 
-@keyframes light{
-  0%{
+@keyframes light {
+  0% {
     left: -50%;
   }
-  100%{
+  100% {
     left: 130%;
   }
 }
+
 .swiper-slide:not(.swiper-slide-active) {
   transform: scale(0.8);
   opacity: 0.6;
@@ -253,19 +259,20 @@ header span {
 
 .select {
   z-index: 10;
-  /* margin-bottom: 20px; */
 }
-.select-open{
+
+.select-open {
   display: none;
 }
-.select-list, .section-left, .rolecard-list__item,.select-open {
+
+.select-list, .section-left, .rolecard-list__item, .select-open {
   border-radius: 2px;
 }
 
 .section-select {
   position: relative;
-  width: 100%;
   max-width: 1080px;
+  width: 100%;
   z-index: 9;
 }
 
@@ -306,9 +313,15 @@ header span {
   display: block;
   line-height: 2.5em;
   padding: 7px 20px;
-  font-weight: bold;
 }
-
+.weapon  .item-list__span,
+.element .item-list__span{
+  line-height: 1.8em;
+  font-size: 20px;
+}
+.weapon  .item-list__span{
+  color:#4f4f4f;
+}
 .item-list__detail .item-list__span {
   cursor: pointer;
   position: relative;
@@ -400,24 +413,35 @@ header span {
   height: 100vh;
 }
 
-.mask-svg .lds-message {
+.mask-svg .lds-message,
+.mask-svg .mask-text {
   position: absolute;
   top: calc(50% - 40px);
   left: calc(50% - 40px);
   z-index: 1000;
   transform: scale(1.4);
 }
-
+.mask-svg .mask-text{
+  color: #fff;
+  font-size: 3em;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 /* 左侧公告样式 */
 
-.section-left {
+.Phone-Notice {
   width: 100px;
   height: 39px;
   top: 70px;
+  left: 10%;
+}
+
+.section-left {
   transition: all 0.2s linear;
 }
 
-.section-left:hover {
+.Phone-Notice:hover {
   width: 330px;
   animation-name: noticeHeight;
   animation-duration: 0.2s;
@@ -429,7 +453,7 @@ header span {
   font-size: 1.2em;
 }
 
-.Notice:hover .Notice-title {
+.PC-Notice .Notice:hover .Notice-title {
   background-color: #ffc343;
   color: #fff;
 }
@@ -440,7 +464,7 @@ header span {
 
 .Notice .Notice-text .Notice-text__greet {
   position: relative;
-  height: 120px;
+  margin-bottom: 20px;
 }
 
 .Notice-text__greet .greet-time {
@@ -448,7 +472,10 @@ header span {
   bottom: 0px;
   right: 0;
 }
-
+.Notice-text__greet a:hover{
+  color:#ffc343;
+  text-decoration: underline #ffc343;
+}
 @-webkit-keyframes noticeHeight {
   0% {
     height: 39px;
@@ -474,9 +501,11 @@ header span {
 }
 
 /* 角色卡 */
-.rolecard{
+
+.rolecard {
   margin-bottom: 50px;
 }
+
 .rolecard-list img {
   width: 100%;
 }
@@ -617,16 +646,19 @@ header span {
 }
 
 /* 底部样式 */
-.goTop{
+
+.goTop {
   position: fixed;
   bottom: 20%;
   right: 30px;
   cursor: pointer;
   display: none;
 }
-.goTop:hover .goTopSvg{
+
+.goTop:hover .goTopSvg {
   transform: scale(1.2);
 }
+
 .goTopSvg {
   stroke: #ffc343;
   stroke-width: 5;
@@ -634,7 +666,8 @@ header span {
   stroke-linejoin: round; */
   fill: none;
 }
-.goTop::after{
+
+.goTop::after {
   content: '回到顶部';
   position: absolute;
   color: #ffc343;
@@ -643,19 +676,21 @@ header span {
   width: 100%;
   text-align: center;
 }
-.loadmore{
+
+.loadmore {
   margin: 0 auto;
   width: 170px;
-  font-size: 1.4em;
   line-height: 3em;
   text-align: center;
   display: none;
   font-weight: bold;
 }
-.loadmore:active{
+
+.loadmore:active {
   color: #fff;
-  background-color: #ffc43f;
+  background-color: #ffc343;
 }
+
 footer {
   bottom: 0;
 }
